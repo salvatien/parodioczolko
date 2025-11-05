@@ -1,0 +1,13 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { GameComponent } from './components/game/game';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, GameComponent],
+  templateUrl: './app.html',
+  styleUrl: './app.scss'
+})
+export class AppComponent {
+  title = 'Parodioczolko';
+}

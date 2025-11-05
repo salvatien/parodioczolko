@@ -1,0 +1,70 @@
+<div class="game-container">
+  <!-- Header with Score -->
+  <header class="game-header">
+    <h1>🎵 Parodioczolko</h1>
+    <div class="score-section">
+      <div class="score">Score: {{ score }}/{{ totalSongs }}</div>
+      <div class="success-rate" *ngIf="totalSongs > 0">
+        Success Rate: {{ successRate }}%
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Game Area -->
+  <main class="game-main">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading next song...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !isLoading" class="error">
+      <h3>😕 Oops!</h3>
+      <p>{{ error }}</p>
+      <button class="btn btn-primary" (click)="loadNextSong()">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Song Display -->
+    <div *ngIf="currentSong && !isLoading && !error" class="song-card">
+      <div class="song-info">
+        <h2 class="song-title">{{ currentSong.name }}</h2>
+        <p class="song-artist">by <strong>{{ currentSong.artist }}</strong></p>
+        <p class="song-year">Released in <strong>{{ currentSong.year }}</strong></p>
+      </div>
+
+      <div class="game-instructions">
+        <p>🎯 Describe this song to others!</p>
+        <p>Did they guess it correctly?</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button 
+          class="btn btn-success" 
+          (click)="onCorrect()"
+          [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
+          ✅ Correct
+        </button>
+        <button 
+          class="btn btn-warning" 
+          (click)="onSkip()"
+          [attr.aria-label]="'Skip ' + currentSong.name">
+          ⏭️ Skip
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="game-footer">
+    <button 
+      class="btn btn-secondary" 
+      (click)="resetGame()"
+      *ngIf="totalSongs > 0">
+      🔄 Reset Game
+    </button>
+  </footer>
+</div>
