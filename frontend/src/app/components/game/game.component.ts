@@ -6,8 +6,8 @@ import { SongService } from '../../services/song.service';
 @Component({
   selector: 'app-game',
   imports: [CommonModule],
-  templateUrl: './game.html',
-  styleUrl: './game.scss',
+  templateUrl: './game.component.html',
+  styleUrl: './game.component.scss',
 })
 export class GameComponent implements OnInit {
   currentSong: Song | null = null;
