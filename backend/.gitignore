@@ -13,6 +13,10 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# JetBrains IDEs (Rider, IntelliJ, etc.)
+.idea/
+*.sln.iml
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 
