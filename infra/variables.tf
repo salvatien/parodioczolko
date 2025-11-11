@@ -35,21 +35,3 @@ variable "project_name" {
     error_message = "Project name must be lowercase, start with a letter, and be max 20 characters."
   }
 }
-
-variable "enable_monitoring" {
-  description = "Enable Application Insights monitoring"
-  type        = bool
-  default     = true
-}
-
-variable "existing_cosmos_db_name" {
-  description = "Name of existing Cosmos DB account to use"
-  type        = string
-  default     = ""
-}
-
-variable "existing_cosmos_db_resource_group" {
-  description = "Resource group of existing Cosmos DB account"
-  type        = string
-  default     = ""
-}
