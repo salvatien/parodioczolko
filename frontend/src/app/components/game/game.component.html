@@ -1,11 +1,19 @@
 <div class="game-container">
-  <!-- Header with Score -->
+  <!-- Header with Score and Timer -->
   <header class="game-header">
     <h1>🎵 Parodioczolko</h1>
-    <div class="score-section">
-      <div class="score">Score: {{ score }}/{{ totalSongs }}</div>
-      <div class="success-rate" *ngIf="totalSongs > 0">
-        Success Rate: {{ successRate }}%
+    
+    <div class="game-stats">
+      <div class="timer-section" [ngClass]="{'time-warning': isTimeRunningOut}">
+        <div class="timer-icon">⏰</div>
+        <div class="timer-display">{{ formatTime(timeLeft) }}</div>
+      </div>
+      
+      <div class="score-section">
+        <div class="score">Score: {{ score }}/{{ totalSongs }}</div>
+        <div class="success-rate" *ngIf="totalSongs > 0">
+          Success Rate: {{ successRate }}%
+        </div>
       </div>
     </div>
   </header>
@@ -35,11 +43,6 @@
         <p class="song-year">Released in <strong>{{ currentSong.year }}</strong></p>
       </div>
 
-      <div class="game-instructions">
-        <p>🎯 Describe this song to others!</p>
-        <p>Did they guess it correctly?</p>
-      </div>
-
       <!-- Action Buttons -->
       <div class="action-buttons">
         <button 
@@ -61,9 +64,9 @@
   <!-- Footer -->
   <footer class="game-footer">
     <button 
-      class="btn btn-secondary" 
+      class="btn btn-reset" 
       (click)="resetGame()"
-      *ngIf="totalSongs > 0">
+      aria-label="Reset the game">
       🔄 Reset Game
     </button>
   </footer>

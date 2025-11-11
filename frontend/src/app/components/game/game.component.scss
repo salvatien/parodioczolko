@@ -21,17 +21,61 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  .score-section {
+  .game-stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .timer-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    
+    &.time-warning {
+      background: rgba(255, 69, 58, 0.8);
+      animation: pulse 1s infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .timer-icon {
+    font-size: 1.3rem;
+  }
+
+  .timer-display {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+  }
+
+  .score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 
     .score, .success-rate {
       background: rgba(255, 255, 255, 0.2);
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-weight: 600;
+      min-width: 120px;
+      text-align: center;
     }
   }
 }
@@ -121,23 +165,6 @@
     }
   }
 
-  .game-instructions {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-
-    p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-
-      &:first-child {
-        font-weight: 600;
-        font-size: 1.2rem;
-      }
-    }
-  }
-
   .action-buttons {
     display: flex;
     gap: 1rem;
@@ -206,6 +233,30 @@
 .game-footer {
   padding: 1rem;
   text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+
+  .btn-reset {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
 }
 
 // Responsive design

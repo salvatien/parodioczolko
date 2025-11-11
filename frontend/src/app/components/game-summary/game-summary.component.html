@@ -1,0 +1,72 @@
+<div class="summary-container">
+  <div class="summary-card">
+    <div class="header">
+      <h1>🎵 Game Over!</h1>
+      <p class="performance">{{ performance }}</p>
+    </div>
+
+    <div class="score-display">
+      <div class="main-score">
+        <span class="score-number">{{ score }}</span>
+        <span class="score-divider">/</span>
+        <span class="total-number">{{ totalSongs }}</span>
+      </div>
+      <p class="score-label">Songs Guessed</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value">{{ accuracy }}%</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value">{{ timeElapsed }}s</div>
+        <div class="stat-label">Time Played</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">🎵</div>
+        <div class="stat-value">{{ totalSongs }}</div>
+        <div class="stat-label">Songs Played</div>
+      </div>
+    </div>
+
+    <div class="achievements" *ngIf="accuracy >= 50">
+      <h3>🏆 Achievement Unlocked!</h3>
+      <div class="achievement" *ngIf="accuracy >= 80">
+        <span class="achievement-icon">🎵</span>
+        <span class="achievement-text">Music Master</span>
+      </div>
+      <div class="achievement" *ngIf="accuracy >= 60 && accuracy < 80">
+        <span class="achievement-icon">🎶</span>
+        <span class="achievement-text">Song Expert</span>
+      </div>
+      <div class="achievement" *ngIf="accuracy >= 50 && accuracy < 60">
+        <span class="achievement-icon">🎤</span>
+        <span class="achievement-text">Rising Star</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="play-again-button" (click)="playAgain()">
+        🔄 Play Again
+      </button>
+      <button class="share-button" (click)="shareResults()">
+        📱 Share Score
+      </button>
+    </div>
+
+    <div class="tips" *ngIf="accuracy < 50">
+      <h4>💡 Tips to Improve:</h4>
+      <ul>
+        <li>Listen to the full song before guessing</li>
+        <li>Focus on the melody and rhythm</li>
+        <li>Pay attention to the artist's voice style</li>
+        <li>Practice with different music genres</li>
+      </ul>
+    </div>
+  </div>
+</div>
