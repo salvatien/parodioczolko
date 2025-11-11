@@ -17,11 +17,22 @@
     </div>
 
     <!-- Song Display -->
-    <div *ngIf="currentSong && !isLoading && !error" class="song-card">
+    <div *ngIf="currentSong && !isLoading && !error" 
+         class="song-card"
+         [class.swipe-left]="swipeState.direction === 'left'"
+         [class.swipe-right]="swipeState.direction === 'right'"
+         [class.slide-out-left]="swipeState.isSlideOutActive && swipeState.slideDirection === 'left'"
+         [class.slide-out-right]="swipeState.isSlideOutActive && swipeState.slideDirection === 'right'"
+         [class.slide-in]="swipeState.isNewCard"
+         [style.transform]="swipeState.isSlideOutActive ? '' : 'translateX(' + swipeState.offset + 'px)'"
+         (touchstart)="onTouchStart($event)"
+         (touchend)="onTouchEnd($event)"
+         (touchmove)="onTouchMove($event)">
       <div class="song-info">
         <h2 class="song-title">{{ currentSong.name }}</h2>
         <p class="song-artist">by <strong>{{ currentSong.artist }}</strong></p>
         <p class="song-year">Released in <strong>{{ currentSong.year }}</strong></p>
+        <p class="swipe-hint">💡 Swipe ← to skip, swipe → to mark correct</p>
       </div>
 
       <!-- Action Buttons -->

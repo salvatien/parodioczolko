@@ -6,6 +6,7 @@ import { Song } from '../../models/song.model';
 import { SongService } from '../../services/song.service';
 import { TimerService } from '../../services/timer.service';
 import { GameStateService } from '../../services/game-state.service';
+import { SwipeGestureService, SwipeState } from '../../services/swipe-gesture.service';
 
 @Component({
   selector: 'app-game',
@@ -21,21 +22,39 @@ export class GameComponent implements OnInit, OnDestroy {
   totalSongs = 0;
   timeLeft = 60;
   
+  // Swipe gesture state from service
+  swipeState: SwipeState = { 
+    offset: 0, 
+    direction: 'none', 
+    isActive: false, 
+    isSlideOutActive: false, 
+    slideDirection: 'none', 
+    isNewCard: false 
+  };
+  
   private timerSubscription?: Subscription;
+  private swipeSubscription?: Subscription;
 
   constructor(
     private songService: SongService,
     private timerService: TimerService,
     private gameStateService: GameStateService,
-    private router: Router
+    private router: Router,
+    private swipeGestureService: SwipeGestureService
   ) {}
 
   ngOnInit(): void {
+    // Subscribe to swipe state
+    this.swipeSubscription = this.swipeGestureService.swipeState$.subscribe(
+      state => this.swipeState = state
+    );
+    
     this.startGame();
   }
 
   ngOnDestroy(): void {
     this.timerSubscription?.unsubscribe();
+    this.swipeSubscription?.unsubscribe();
     this.timerService.stopTimer();
   }
 
@@ -93,6 +112,9 @@ export class GameComponent implements OnInit, OnDestroy {
       next: (song: Song) => {
         this.currentSong = song;
         this.isLoading = false;
+        
+        // Trigger new card animation
+        this.swipeGestureService.triggerNewCardAnimation();
       },
       error: (error: any) => {
         console.error('Error loading song:', error);
@@ -139,5 +161,39 @@ export class GameComponent implements OnInit, OnDestroy {
 
   get isTimeRunningOut(): boolean {
     return this.timeLeft <= 10 && this.timeLeft > 0;
+  }
+
+  // Touch gesture handlers using the service
+  onTouchStart(event: TouchEvent): void {
+    this.swipeGestureService.onTouchStart(event);
+  }
+
+  onTouchEnd(event: TouchEvent): void {
+    if (!this.currentSong || this.isLoading) return;
+    
+    const result = this.swipeGestureService.onTouchEnd(event);
+    
+    if (result.completed && result.direction) {
+      // Start slide out animation
+      this.swipeGestureService.startSlideOutAnimation(result.direction);
+      
+      // Wait for slide out animation to complete, then update game state
+      setTimeout(() => {
+        if (result.direction === 'right') {
+          this.onCorrect();
+        } else {
+          this.onSkip();
+        }
+      }, 400); // Match the CSS animation duration
+    }
+  }
+
+  onTouchMove(event: TouchEvent): void {
+    if (!this.currentSong || this.isLoading) return;
+    
+    const shouldPreventDefault = this.swipeGestureService.onTouchMove(event);
+    if (shouldPreventDefault) {
+      event.preventDefault();
+    }
   }
 }
