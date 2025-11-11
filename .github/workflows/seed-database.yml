@@ -23,7 +23,7 @@ on:
       container_name:
         description: 'Cosmos DB container name'
         required: true
-        default: 'Songs'
+        default: 'ParodioczolkoSongs'
         type: string
       confirm_action:
         description: 'Type "SEED_DATABASE" to confirm data seeding'
@@ -157,6 +157,17 @@ jobs:
         echo "COSMOS_KEY=$COSMOS_KEY" >> $GITHUB_ENV
         echo "Database endpoint: $COSMOS_ENDPOINT"
 
+    - name: 'Validate Container Name'
+      run: |
+        CONTAINER_NAME="${{ github.event.inputs.container_name }}"
+        if [[ ! "$CONTAINER_NAME" == *"Parodioczolko"* ]]; then
+          echo "❌ Error: Container name '$CONTAINER_NAME' must contain 'Parodioczolko' for safety."
+          echo "This prevents accidentally seeding the wrong container."
+          echo "Valid examples: Songs-Parodioczolko, ParodioczolkoSongs, Parodioczolko-Songs"
+          exit 1
+        fi
+        echo "✅ Container name validation passed: $CONTAINER_NAME"
+
     - name: 'Build and Run Seeder'
       working-directory: ./backend/ParodioczolkoApi.Seeder
       env:
@@ -168,7 +179,7 @@ jobs:
         echo "📦 Container: ${{ github.event.inputs.container_name }}"
         dotnet restore
         dotnet build
-        dotnet run production
+        dotnet run production --auto-confirm
         echo "✅ Database seeding completed successfully!"
 
     - name: 'Seeding Summary'

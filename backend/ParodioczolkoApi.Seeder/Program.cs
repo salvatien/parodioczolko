@@ -11,6 +11,7 @@ class Program
         {
             // Parse command line arguments
             var useEmulator = args.Length > 0 && args[0].ToLower() == "emulator";
+            var autoConfirm = args.Length > 1 && args[1].ToLower() == "--auto-confirm";
             var endpoint = GetEndpoint(useEmulator);
             var key = GetKey(useEmulator);
             
@@ -24,19 +25,31 @@ class Program
             Console.WriteLine($"📦 Container: {containerName}");
             Console.WriteLine();
 
+            // Validate container name contains "Parodioczolko" for safety
+            if (!containerName.Contains("Parodioczolko", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"❌ Error: Container name '{containerName}' must contain 'Parodioczolko' for safety.");
+                Console.WriteLine("This prevents accidentally seeding the wrong container.");
+                Environment.Exit(1);
+            }
+
             // Initialize seeder
             using var seeder = new CosmosDbSeeder(endpoint, key, databaseName, containerName, useEmulator);
 
-            // Confirm before proceeding
-            if (!useEmulator)
+            // Confirm before proceeding (unless auto-confirm is enabled)
+            if (!useEmulator && !autoConfirm)
             {
-                Console.Write("⚠️  You are about to seed PRODUCTION database. Continue? (y/N): ");
+                Console.Write("⚠️  You are about to seed non-emulator database. Continue? (y/N): ");
                 var confirm = Console.ReadLine();
                 if (!string.Equals(confirm, "y", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("❌ Operation cancelled.");
                     return;
                 }
+            }
+            else if (!useEmulator && autoConfirm)
+            {
+                Console.WriteLine("⚠️  Auto-confirm enabled. Proceeding with non-emulator database seeding...");
             }
 
             // Run seeding
@@ -52,8 +65,12 @@ class Program
             Environment.Exit(1);
         }
 
-        Console.WriteLine("\nPress any key to exit...");
-        Console.ReadKey();
+        // Only wait for key press if running interactively (not in CI/CD)
+        if (Environment.UserInteractive && !args.Any(a => a.ToLower() == "--auto-confirm"))
+        {
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
     }
 
     private static string GetEndpoint(bool useEmulator)
