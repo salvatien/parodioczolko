@@ -129,6 +129,62 @@
   font-style: italic;
 }
 
+.timer-options {
+  margin: 25px 0;
+  padding: 20px 0;
+}
+
+.timer-options h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.timer-button {
+  background: white;
+  border: 2px solid #e0e0e0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.timer-button:hover {
+  border-color: #667eea;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.timer-button.selected {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.timer-duration {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.timer-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 600px) {
   .welcome-card {
@@ -151,5 +207,27 @@
   .start-button {
     padding: 12px 30px;
     font-size: 1.1rem;
+  }
+
+  .timer-options {
+    margin: 20px 0;
+    padding: 15px 0;
+  }
+
+  .timer-buttons {
+    gap: 10px;
+  }
+
+  .timer-button {
+    padding: 10px 14px;
+    min-width: 70px;
+  }
+
+  .timer-duration {
+    font-size: 1rem;
+  }
+
+  .timer-label {
+    font-size: 0.8rem;
   }
 }

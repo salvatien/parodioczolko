@@ -8,12 +8,28 @@
     <div class="game-info">
       <h2>How to Play</h2>
       <ul>
-        <li>🎯 You have <strong>60 seconds</strong> to guess as many songs as possible</li>
+        <li>🎯 Choose your time limit and guess as many songs as possible</li>
         <li>🎵 Listen to each song and try to identify the title</li>
         <li>✅ Click "Correct" if you know the song</li>
         <li>⏭️ Click "Skip" if you don't know it</li>
         <li>📊 See your score and accuracy at the end!</li>
       </ul>
+    </div>
+
+    <div class="timer-options">
+      <h3>⏱️ Choose Your Challenge</h3>
+      <div class="timer-buttons">
+        <button 
+          *ngFor="let duration of timerOptions"
+          class="timer-button"
+          [class.selected]="selectedDuration === duration"
+          (click)="selectDuration(duration)">
+          <div class="timer-duration">{{ duration }}s</div>
+          <div class="timer-label">
+            {{ duration === 60 ? 'Quick' : duration === 90 ? 'Standard' : 'Extended' }}
+          </div>
+        </button>
+      </div>
     </div>
 
     <div class="stats-preview">
@@ -22,7 +38,7 @@
         <span class="stat-label">Songs</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">60s</span>
+        <span class="stat-number">{{ selectedDuration }}s</span>
         <span class="stat-label">Timer</span>
       </div>
       <div class="stat-item">

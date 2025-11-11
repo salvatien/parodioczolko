@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer, Subscription } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 
+export const TIMER_OPTIONS = [60, 90, 120] as const;
+export type TimerDuration = typeof TIMER_OPTIONS[number];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,9 +12,24 @@ export class TimerService {
   private timeLeftSubject = new BehaviorSubject<number>(60);
   private timerSubscription?: Subscription;
   private gameStartTime = 0;
-  private gameDuration = 60; // seconds
+  private gameDuration: TimerDuration = 60; // default duration
+  private preferredDuration: TimerDuration = 60; // remembers user's last selection
 
   timeLeft$: Observable<number> = this.timeLeftSubject.asObservable();
+
+  setGameDuration(duration: TimerDuration): void {
+    this.gameDuration = duration;
+    this.preferredDuration = duration; // remember this choice
+    this.timeLeftSubject.next(duration);
+  }
+
+  getGameDuration(): TimerDuration {
+    return this.gameDuration;
+  }
+
+  getPreferredDuration(): TimerDuration {
+    return this.preferredDuration;
+  }
   
   startTimer(): void {
     this.gameStartTime = Date.now();
