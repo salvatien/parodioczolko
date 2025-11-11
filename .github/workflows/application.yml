@@ -222,11 +222,12 @@ jobs:
         
         FUNC_URL="https://${FUNC_NAME}.azurewebsites.net"
         
-        echo "🔧 Updating environment.prod.ts..."
+        echo "🔧 Updating environment files for Azure deployment..."
         echo "📍 Function App Name: $FUNC_NAME"
         echo "🔗 API URL: $FUNC_URL"
+        echo "🌍 Target Environment: ${{ env.ENVIRONMENT }}"
         
-        # Update the production environment file
+        # Update the production environment file (used for optimized builds)
         cat > environment.prod.ts << EOF
         export const environment = {
           production: true,
@@ -234,9 +235,19 @@ jobs:
         };
         EOF
         
-        echo "✅ Updated environment.prod.ts with API URL: $FUNC_URL"
+        # Also update the default environment file to ensure consistency
+        cat > environment.ts << EOF
+        export const environment = {
+          production: false,
+          apiUrl: '$FUNC_URL'
+        };
+        EOF
+        
+        echo "✅ Updated environment files with API URL: $FUNC_URL"
         echo "📄 Contents of environment.prod.ts:"
         cat environment.prod.ts
+        echo "📄 Contents of environment.ts:"
+        cat environment.ts
 
     - name: 'Build project'
       working-directory: ./frontend
