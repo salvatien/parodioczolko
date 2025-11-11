@@ -33,6 +33,12 @@ env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './backend'
   ENVIRONMENT: ${{ github.event.inputs.environment || 'dev' }}
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  actions: read
+
 jobs:
   get-infrastructure-info:
     name: 'Get Infrastructure Info'
@@ -113,11 +119,19 @@ jobs:
 
     - name: 'Publish test results'
       uses: dorny/test-reporter@v1
-      if: success() || failure()
+      if: (success() || failure()) && github.event_name != 'workflow_run'
       with:
         name: '.NET Tests'
         path: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/TestResults/*.trx'
         reporter: dotnet-trx
+
+    - name: 'Upload test results (workflow_run fallback)'
+      if: (success() || failure()) && github.event_name == 'workflow_run'
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/TestResults/*.trx'
+        retention-days: 5
 
     - name: Azure Login
       uses: azure/login@v1
