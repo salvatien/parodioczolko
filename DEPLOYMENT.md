@@ -78,10 +78,20 @@ TERRAFORM_STORAGE_ACCOUNT=saterraformstate<unique-suffix>
 
 After the infrastructure is deployed, you'll need to get the Static Web App deployment token:
 
+**Option A: Azure CLI (Recommended)**
 ```bash
 # Get the deployment token (run after infrastructure deployment)
 az staticwebapp secrets list --name <your-static-web-app-name> --query "properties.apiKey" -o tsv
+
+# Or if you know the resource group:
+az staticwebapp secrets list --name <your-static-web-app-name> --resource-group <your-resource-group> --query "properties.apiKey" -o tsv
 ```
+
+**Option B: Azure Portal**
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to your Static Web App resource
+3. In the left menu, click on "Deployment tokens"
+4. Copy the deployment token
 
 Add this as a GitHub secret:
 ```
