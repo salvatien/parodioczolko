@@ -68,16 +68,37 @@ jobs:
     - name: Get Infrastructure Info
       id: get-info
       run: |
+        echo "🔍 Looking for infrastructure resources in environment: ${{ env.ENVIRONMENT }}"
+        
         # Get resource names from Azure (assumes they follow our naming convention)
         RG_NAME=$(az group list --query "[?contains(name, 'rg-parodioczolko-${{ env.ENVIRONMENT }}')].name" -o tsv | head -1)
+        if [ -z "$RG_NAME" ]; then
+          echo "❌ Error: Resource group not found for environment ${{ env.ENVIRONMENT }}"
+          echo "Available resource groups:"
+          az group list --query "[].name" -o table
+          exit 1
+        fi
+        
         FUNC_NAME=$(az functionapp list -g $RG_NAME --query "[?contains(name, 'func-parodioczolko-api-${{ env.ENVIRONMENT }}')].name" -o tsv | head -1)
+        if [ -z "$FUNC_NAME" ]; then
+          echo "❌ Error: Function app not found in resource group $RG_NAME"
+          echo "Available function apps in $RG_NAME:"
+          az functionapp list -g $RG_NAME --query "[].name" -o table
+          exit 1
+        fi
+        
         SWA_NAME=$(az staticwebapp list -g $RG_NAME --query "[?contains(name, 'stapp-parodioczolko-${{ env.ENVIRONMENT }}')].name" -o tsv | head -1)
+        if [ -z "$SWA_NAME" ]; then
+          echo "❌ Warning: Static Web App not found in resource group $RG_NAME"
+          echo "Available static web apps in $RG_NAME:"
+          az staticwebapp list -g $RG_NAME --query "[].name" -o table
+        fi
         
         echo "function_app_name=$FUNC_NAME" >> $GITHUB_OUTPUT
         echo "static_web_app_name=$SWA_NAME" >> $GITHUB_OUTPUT
         echo "resource_group_name=$RG_NAME" >> $GITHUB_OUTPUT
         
-        echo "Found resources:"
+        echo "✅ Found resources:"
         echo "- Resource Group: $RG_NAME"
         echo "- Function App: $FUNC_NAME"
         echo "- Static Web App: $SWA_NAME"
@@ -188,7 +209,22 @@ jobs:
     - name: 'Update API URL in environment'
       working-directory: ./frontend/src/environments
       run: |
-        FUNC_URL="https://${{ needs.get-infrastructure-info.outputs.function_app_name }}.azurewebsites.net"
+        FUNC_NAME="${{ needs.get-infrastructure-info.outputs.function_app_name }}"
+        
+        # Validate that we have a function app name
+        if [ -z "$FUNC_NAME" ] || [ "$FUNC_NAME" = "" ]; then
+          echo "❌ Error: Function App name not found!"
+          echo "Available outputs:"
+          echo "- function_app_name: ${{ needs.get-infrastructure-info.outputs.function_app_name }}"
+          echo "- resource_group_name: ${{ needs.get-infrastructure-info.outputs.resource_group_name }}"
+          exit 1
+        fi
+        
+        FUNC_URL="https://${FUNC_NAME}.azurewebsites.net"
+        
+        echo "🔧 Updating environment.prod.ts..."
+        echo "📍 Function App Name: $FUNC_NAME"
+        echo "🔗 API URL: $FUNC_URL"
         
         # Update the production environment file
         cat > environment.prod.ts << EOF
@@ -198,7 +234,9 @@ jobs:
         };
         EOF
         
-        echo "Updated environment.prod.ts with API URL: $FUNC_URL"
+        echo "✅ Updated environment.prod.ts with API URL: $FUNC_URL"
+        echo "📄 Contents of environment.prod.ts:"
+        cat environment.prod.ts
 
     - name: 'Build project'
       working-directory: ./frontend
