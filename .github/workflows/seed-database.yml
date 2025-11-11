@@ -57,18 +57,12 @@ jobs:
     needs: validate-input
     
     outputs:
-      resource_group_name: ${{ steps.terraform.outputs.resource_group_name }}
-      function_app_name: ${{ steps.terraform.outputs.function_app_name }}
+      resource_group_name: ${{ steps.get-info.outputs.resource_group_name }}
+      function_app_name: ${{ steps.get-info.outputs.function_app_name }}
     
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v4
-
-    - name: 'Setup Terraform'
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: 1.6.0
-        terraform_wrapper: false
 
     - name: 'Azure Login'
       uses: azure/login@v1
@@ -81,21 +75,34 @@ jobs:
             "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
           }
 
-    - name: 'Initialize Terraform'
-      working-directory: ./infra
+    - name: 'Get Infrastructure Info'
+      id: get-info
       run: |
-        terraform init \
-          -backend-config="resource_group_name=${{ secrets.TERRAFORM_STORAGE_RG }}" \
-          -backend-config="storage_account_name=${{ secrets.TERRAFORM_STORAGE_ACCOUNT }}" \
-          -backend-config="container_name=tfstate" \
-          -backend-config="key=parodioczolko-${{ env.ENVIRONMENT }}.tfstate"
-
-    - name: 'Get Terraform Outputs'
-      id: terraform
-      working-directory: ./infra
-      run: |
-        echo "resource_group_name=$(terraform output -raw resource_group_name)" >> $GITHUB_OUTPUT
-        echo "function_app_name=$(terraform output -raw function_app_name)" >> $GITHUB_OUTPUT
+        echo "🔍 Looking for infrastructure resources in environment: ${{ env.ENVIRONMENT }}"
+        
+        # Get resource names from Azure (same method as application workflow)
+        RG_NAME=$(az group list --query "[?contains(name, 'rg-parodioczolko-${{ env.ENVIRONMENT }}')].name" -o tsv | head -1)
+        if [ -z "$RG_NAME" ]; then
+          echo "❌ Error: Resource group not found for environment ${{ env.ENVIRONMENT }}"
+          echo "Available resource groups:"
+          az group list --query "[].name" -o table
+          exit 1
+        fi
+        
+        FUNC_NAME=$(az functionapp list -g $RG_NAME --query "[?contains(name, 'func-parodioczolko-api-${{ env.ENVIRONMENT }}')].name" -o tsv | head -1)
+        if [ -z "$FUNC_NAME" ]; then
+          echo "❌ Error: Function app not found in resource group $RG_NAME"
+          echo "Available function apps in $RG_NAME:"
+          az functionapp list -g $RG_NAME --query "[].name" -o table
+          exit 1
+        fi
+        
+        echo "resource_group_name=$RG_NAME" >> $GITHUB_OUTPUT
+        echo "function_app_name=$FUNC_NAME" >> $GITHUB_OUTPUT
+        
+        echo "✅ Found resources:"
+        echo "- Resource Group: $RG_NAME"
+        echo "- Function App: $FUNC_NAME"
 
   seed-database:
     name: 'Seed Database'
