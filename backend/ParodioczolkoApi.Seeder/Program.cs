@@ -25,11 +25,11 @@ class Program
             Console.WriteLine($"📦 Container: {containerName}");
             Console.WriteLine();
 
-            // Validate container name contains "Parodioczolko" for safety
-            if (!containerName.Contains("Parodioczolko", StringComparison.OrdinalIgnoreCase))
+            // Validate database name contains "Parodioczolko" for safety
+            if (!databaseName.Contains("Parodioczolko", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine($"❌ Error: Container name '{containerName}' must contain 'Parodioczolko' for safety.");
-                Console.WriteLine("This prevents accidentally seeding the wrong container.");
+                Console.WriteLine($"❌ Error: Database name '{databaseName}' must contain 'Parodioczolko' for safety.");
+                Console.WriteLine("This prevents accidentally seeding the wrong database.");
                 Environment.Exit(1);
             }
 

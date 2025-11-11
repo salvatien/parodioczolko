@@ -18,12 +18,12 @@ on:
       database_name:
         description: 'Cosmos DB database name'
         required: true
-        default: 'ParodioczolkoDb'
+        default: 'ParodioczolkoDevDb'
         type: string
       container_name:
         description: 'Cosmos DB container name'
         required: true
-        default: 'ParodioczolkoSongs'
+        default: 'Songs'
         type: string
       confirm_action:
         description: 'Type "SEED_DATABASE" to confirm data seeding'
@@ -157,16 +157,16 @@ jobs:
         echo "COSMOS_KEY=$COSMOS_KEY" >> $GITHUB_ENV
         echo "Database endpoint: $COSMOS_ENDPOINT"
 
-    - name: 'Validate Container Name'
+    - name: 'Validate Database Name'
       run: |
-        CONTAINER_NAME="${{ github.event.inputs.container_name }}"
-        if [[ ! "$CONTAINER_NAME" == *"Parodioczolko"* ]]; then
-          echo "❌ Error: Container name '$CONTAINER_NAME' must contain 'Parodioczolko' for safety."
-          echo "This prevents accidentally seeding the wrong container."
-          echo "Valid examples: Songs-Parodioczolko, ParodioczolkoSongs, Parodioczolko-Songs"
+        DATABASE_NAME="${{ github.event.inputs.database_name }}"
+        if [[ ! "$DATABASE_NAME" == *"Parodioczolko"* ]]; then
+          echo "❌ Error: Database name '$DATABASE_NAME' must contain 'Parodioczolko' for safety."
+          echo "This prevents accidentally seeding the wrong database."
+          echo "Valid examples: ParodioczolkoDevDb, ParodioczolkoProdDb, ParodioczolkoTestDb"
           exit 1
         fi
-        echo "✅ Container name validation passed: $CONTAINER_NAME"
+        echo "✅ Database name validation passed: $DATABASE_NAME"
 
     - name: 'Build and Run Seeder'
       working-directory: ./backend/ParodioczolkoApi.Seeder

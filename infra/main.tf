@@ -155,7 +155,7 @@ resource "azurerm_linux_function_app" "api" {
     
     # Cosmos DB connection
     "CosmosDb__AccountEndpoint" = var.existing_cosmos_db_name != "" ? data.azurerm_cosmosdb_account.existing[0].endpoint : ""
-    "CosmosDb__DatabaseName"    = "ParodioczolkoDb"
+    "CosmosDb__DatabaseName"    = "Parodioczolko${title(var.environment)}Db"
     "CosmosDb__ContainerName"   = "Songs"
   }
 
