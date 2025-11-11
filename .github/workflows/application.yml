@@ -284,6 +284,38 @@ jobs:
     if: always()
     
     steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    - name: 'Get Actual URLs'
+      id: get-urls
+      run: |
+        # Get the actual Static Web App URL
+        SWA_NAME="${{ needs.get-infrastructure-info.outputs.static_web_app_name }}"
+        RG_NAME="${{ needs.get-infrastructure-info.outputs.resource_group_name }}"
+        
+        if [ ! -z "$SWA_NAME" ]; then
+          SWA_URL=$(az staticwebapp show --name "$SWA_NAME" --resource-group "$RG_NAME" --query "defaultHostname" -o tsv)
+          if [ ! -z "$SWA_URL" ]; then
+            echo "static_web_app_url=https://$SWA_URL" >> $GITHUB_OUTPUT
+            echo "✅ Found Static Web App URL: https://$SWA_URL"
+          else
+            echo "static_web_app_url=https://$(echo '$SWA_NAME' | tr -d ' ').azurestaticapps.net" >> $GITHUB_OUTPUT
+            echo "⚠️ Could not get Static Web App URL, using fallback"
+          fi
+        else
+          echo "static_web_app_url=Static Web App not found" >> $GITHUB_OUTPUT
+          echo "❌ Static Web App name not available"
+        fi
+
     - name: 'Create Deployment Summary'
       run: |
         echo "## 🎉 Parodioczolko Deployment Complete!" >> $GITHUB_STEP_SUMMARY
@@ -293,7 +325,7 @@ jobs:
         echo "- **Frontend Deployment**: ${{ needs.build-and-deploy-frontend.result }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "### Application URLs:" >> $GITHUB_STEP_SUMMARY
-        echo "- **🎮 Game**: [Play Parodioczolko](https://$(echo '${{ needs.get-infrastructure-info.outputs.static_web_app_name }}' | tr -d ' ').azurestaticapps.net)" >> $GITHUB_STEP_SUMMARY
+        echo "- **🎮 Game**: [Play Parodioczolko](${{ steps.get-urls.outputs.static_web_app_url }})" >> $GITHUB_STEP_SUMMARY
         echo "- **🔗 API**: [Function App](https://${{ needs.get-infrastructure-info.outputs.function_app_name }}.azurewebsites.net)" >> $GITHUB_STEP_SUMMARY
         echo "- **📊 Monitoring**: [Application Insights](https://portal.azure.com/#@/resource/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ needs.get-infrastructure-info.outputs.resource_group_name }}/providers/microsoft.insights/components/appi-parodioczolko-${{ env.ENVIRONMENT }})" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
