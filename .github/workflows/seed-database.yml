@@ -15,6 +15,16 @@ on:
         options:
         - dev
         - prod
+      database_name:
+        description: 'Cosmos DB database name'
+        required: true
+        default: 'ParodioczolkoDb'
+        type: string
+      container_name:
+        description: 'Cosmos DB container name'
+        required: true
+        default: 'Songs'
+        type: string
       confirm_action:
         description: 'Type "SEED_DATABASE" to confirm data seeding'
         required: true
@@ -37,6 +47,9 @@ jobs:
           exit 1
         fi
         echo "✅ Confirmation validated. Proceeding with database seeding."
+        echo "📊 Target Database: ${{ github.event.inputs.database_name }}"
+        echo "📦 Target Container: ${{ github.event.inputs.container_name }}"
+        echo "🌍 Environment: ${{ github.event.inputs.environment }}"
 
   get-infrastructure-info:
     name: 'Get Infrastructure Information'
@@ -139,8 +152,13 @@ jobs:
 
     - name: 'Build and Run Seeder'
       working-directory: ./backend/ParodioczolkoApi.Seeder
+      env:
+        COSMOS_DATABASE_NAME: ${{ github.event.inputs.database_name }}
+        COSMOS_CONTAINER_NAME: ${{ github.event.inputs.container_name }}
       run: |
         echo "🌱 Starting database seeding for ${{ env.ENVIRONMENT }} environment..."
+        echo "📊 Database: ${{ github.event.inputs.database_name }}"
+        echo "📦 Container: ${{ github.event.inputs.container_name }}"
         dotnet restore
         dotnet build
         dotnet run production
@@ -153,6 +171,8 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "### Details:" >> $GITHUB_STEP_SUMMARY
         echo "- **Environment**: ${{ env.ENVIRONMENT }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Database**: ${{ github.event.inputs.database_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Container**: ${{ github.event.inputs.container_name }}" >> $GITHUB_STEP_SUMMARY
         echo "- **Cosmos DB**: Connected successfully" >> $GITHUB_STEP_SUMMARY
         echo "- **Sample Data**: Songs and game data seeded" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY

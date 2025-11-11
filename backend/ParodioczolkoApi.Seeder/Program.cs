@@ -13,8 +13,10 @@ class Program
             var useEmulator = args.Length > 0 && args[0].ToLower() == "emulator";
             var endpoint = GetEndpoint(useEmulator);
             var key = GetKey(useEmulator);
-            var databaseName = "ParodioczolkoDb";
-            var containerName = "Songs";
+            
+            // Get database and container names from environment variables or use defaults
+            var databaseName = Environment.GetEnvironmentVariable("COSMOS_DATABASE_NAME") ?? "ParodioczolkoDb";
+            var containerName = Environment.GetEnvironmentVariable("COSMOS_CONTAINER_NAME") ?? "Songs";
 
             Console.WriteLine($"📍 Target: {(useEmulator ? "Cosmos DB Emulator" : "Azure Cosmos DB")}");
             Console.WriteLine($"🌐 Endpoint: {endpoint}");
