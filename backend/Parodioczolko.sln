@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParodioczolkoApi.Tests", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParodioczolkoApi.Seeder", "ParodioczolkoApi.Seeder\ParodioczolkoApi.Seeder.csproj", "{FF8074C2-B26C-4FF0-B02D-A56B18F52E1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParodioczolkoApi.Functions", "ParodioczolkoApi.Functions\ParodioczolkoApi.Functions.csproj", "{D8292521-9A86-4492-81BC-A461D21AE63D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{FF8074C2-B26C-4FF0-B02D-A56B18F52E1E}.Release|x64.Build.0 = Release|Any CPU
 		{FF8074C2-B26C-4FF0-B02D-A56B18F52E1E}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF8074C2-B26C-4FF0-B02D-A56B18F52E1E}.Release|x86.Build.0 = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Debug|x86.Build.0 = Debug|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|x64.Build.0 = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|x86.ActiveCfg = Release|Any CPU
+		{D8292521-9A86-4492-81BC-A461D21AE63D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

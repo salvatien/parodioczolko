@@ -1,0 +1,173 @@
+# Database seeding workflow
+# This workflow seeds the Cosmos DB database with sample data
+# Can only be triggered manually for security and data integrity
+
+name: Seed Database
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to seed'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
+      confirm_action:
+        description: 'Type "SEED_DATABASE" to confirm data seeding'
+        required: true
+        type: string
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  ENVIRONMENT: ${{ github.event.inputs.environment || 'dev' }}
+
+jobs:
+  validate-input:
+    name: 'Validate Input'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 'Validate Confirmation'
+      run: |
+        if [ "${{ github.event.inputs.confirm_action }}" != "SEED_DATABASE" ]; then
+          echo "❌ Invalid confirmation. Please type 'SEED_DATABASE' exactly to confirm."
+          exit 1
+        fi
+        echo "✅ Confirmation validated. Proceeding with database seeding."
+
+  get-infrastructure-info:
+    name: 'Get Infrastructure Information'
+    runs-on: ubuntu-latest
+    needs: validate-input
+    
+    outputs:
+      resource_group_name: ${{ steps.terraform.outputs.resource_group_name }}
+      function_app_name: ${{ steps.terraform.outputs.function_app_name }}
+    
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v4
+
+    - name: 'Setup Terraform'
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.6.0
+        terraform_wrapper: false
+
+    - name: 'Azure Login'
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    - name: 'Initialize Terraform'
+      working-directory: ./infra
+      run: |
+        terraform init \
+          -backend-config="resource_group_name=${{ secrets.TERRAFORM_STORAGE_RG }}" \
+          -backend-config="storage_account_name=${{ secrets.TERRAFORM_STORAGE_ACCOUNT }}" \
+          -backend-config="container_name=tfstate" \
+          -backend-config="key=parodioczolko-${{ env.ENVIRONMENT }}.tfstate"
+
+    - name: 'Get Terraform Outputs'
+      id: terraform
+      working-directory: ./infra
+      run: |
+        echo "resource_group_name=$(terraform output -raw resource_group_name)" >> $GITHUB_OUTPUT
+        echo "function_app_name=$(terraform output -raw function_app_name)" >> $GITHUB_OUTPUT
+
+  seed-database:
+    name: 'Seed Database'
+    runs-on: ubuntu-latest
+    needs: [validate-input, get-infrastructure-info]
+    environment: ${{ github.event.inputs.environment }}
+    
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v4
+
+    - name: 'Setup DotNet ${{ env.DOTNET_VERSION }} Environment'
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: 'Azure Login'
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    - name: 'Get Cosmos DB Connection Info'
+      id: cosmos-info
+      run: |
+        RG_NAME=${{ needs.get-infrastructure-info.outputs.resource_group_name }}
+        
+        # Find the existing Cosmos DB account (it might be in a different resource group)
+        echo "Looking for Cosmos DB accounts..."
+        COSMOS_NAME=$(az cosmosdb list --query "[?contains(name, 'kgtcosmosdb') || contains(name, 'cosmos')].name" -o tsv | head -n 1)
+        
+        if [ -z "$COSMOS_NAME" ]; then
+          echo "❌ No Cosmos DB account found. Please ensure the database exists."
+          exit 1
+        fi
+        
+        echo "Found Cosmos DB: $COSMOS_NAME"
+        
+        # Get the resource group of the Cosmos DB
+        COSMOS_RG=$(az cosmosdb list --query "[?name=='$COSMOS_NAME'].resourceGroup" -o tsv)
+        
+        # Get connection details
+        COSMOS_ENDPOINT=$(az cosmosdb show -g $COSMOS_RG -n $COSMOS_NAME --query "documentEndpoint" -o tsv)
+        COSMOS_KEY=$(az cosmosdb keys list -g $COSMOS_RG -n $COSMOS_NAME --query "primaryMasterKey" -o tsv)
+        
+        echo "COSMOS_ENDPOINT=$COSMOS_ENDPOINT" >> $GITHUB_ENV
+        echo "COSMOS_KEY=$COSMOS_KEY" >> $GITHUB_ENV
+        echo "Database endpoint: $COSMOS_ENDPOINT"
+
+    - name: 'Build and Run Seeder'
+      working-directory: ./backend/ParodioczolkoApi.Seeder
+      run: |
+        echo "🌱 Starting database seeding for ${{ env.ENVIRONMENT }} environment..."
+        dotnet restore
+        dotnet build
+        dotnet run production
+        echo "✅ Database seeding completed successfully!"
+
+    - name: 'Seeding Summary'
+      if: success()
+      run: |
+        echo "## 🌱 Database Seeding Complete!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Details:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Environment**: ${{ env.ENVIRONMENT }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Cosmos DB**: Connected successfully" >> $GITHUB_STEP_SUMMARY
+        echo "- **Sample Data**: Songs and game data seeded" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
+        echo "- **🎮 Test the game**: [Play Parodioczolko](https://portal.azure.com)" >> $GITHUB_STEP_SUMMARY
+        echo "- **📊 Monitor**: Check Application Insights for any issues" >> $GITHUB_STEP_SUMMARY
+
+    - name: 'Seeding Failed'
+      if: failure()
+      run: |
+        echo "## ❌ Database Seeding Failed!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Troubleshooting:" >> $GITHUB_STEP_SUMMARY
+        echo "- Check if Cosmos DB account exists and is accessible" >> $GITHUB_STEP_SUMMARY
+        echo "- Verify Azure permissions for the service principal" >> $GITHUB_STEP_SUMMARY
+        echo "- Review the job logs for specific error messages" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Environment: ${{ env.ENVIRONMENT }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,159 @@
+# Infrastructure deployment workflow
+# This workflow deploys the Terraform infrastructure for Parodioczolko
+# Runs on infrastructure changes or manual trigger
+
+name: Deploy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/**'
+      - '.github/workflows/infrastructure.yml'
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  TF_VAR_environment: ${{ github.event.inputs.environment || 'dev' }}
+
+jobs:
+  terraform:
+    name: 'Deploy Infrastructure'
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra
+    
+    outputs:
+      function_app_name: ${{ steps.terraform.outputs.function_app_name }}
+      static_web_app_name: ${{ steps.terraform.outputs.static_web_app_name }}
+      resource_group_name: ${{ steps.terraform.outputs.resource_group_name }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.6.0
+        terraform_wrapper: false
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    - name: Terraform Format Check
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+
+    - name: Terraform Init
+      id: init
+      run: |
+        terraform init \
+          -backend-config="resource_group_name=${{ secrets.TERRAFORM_STORAGE_RG }}" \
+          -backend-config="storage_account_name=${{ secrets.TERRAFORM_STORAGE_ACCOUNT }}" \
+          -backend-config="container_name=tfstate" \
+          -backend-config="key=parodioczolko-${{ github.event.inputs.environment || 'dev' }}.tfstate"
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      id: plan
+      run: |
+        terraform plan -no-color -input=false -var="environment=${{ github.event.inputs.environment || 'dev' }}"
+      continue-on-error: true
+
+    - name: Update Pull Request
+      uses: actions/github-script@v7
+      if: github.event_name == 'pull_request'
+      env:
+        PLAN: ${{ steps.plan.outputs.stdout }}
+      with:
+        script: |
+          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+          #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+          #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+          #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+          <details><summary>Show Plan</summary>
+
+          \`\`\`terraform\n
+          ${process.env.PLAN}
+          \`\`\`
+
+          </details>
+
+          *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: output
+          })
+
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
+
+    - name: Terraform Apply
+      id: terraform
+      if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+      run: |
+        terraform apply -auto-approve -input=false -var="environment=${{ github.event.inputs.environment || 'dev' }}"
+        
+        # Capture outputs
+        echo "function_app_name=$(terraform output -raw function_app_name)" >> $GITHUB_OUTPUT
+        echo "static_web_app_name=$(terraform output -raw static_web_app_name)" >> $GITHUB_OUTPUT
+        echo "resource_group_name=$(terraform output -raw resource_group_name)" >> $GITHUB_OUTPUT
+
+    - name: Upload Terraform State
+      if: steps.terraform.outcome == 'success'
+      uses: actions/upload-artifact@v4
+      with:
+        name: terraform-state
+        path: ./infra/.terraform
+        retention-days: 5
+
+    - name: Deployment Summary
+      if: steps.terraform.outcome == 'success'
+      run: |
+        echo "## 🎉 Infrastructure Deployment Complete!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Deployed Resources:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Function App**: $(terraform output -raw function_app_name)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Static Web App**: $(terraform output -raw static_web_app_name)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Resource Group**: $(terraform output -raw resource_group_name)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Environment**: ${{ github.event.inputs.environment || 'dev' }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Next Steps:" >> $GITHUB_STEP_SUMMARY
+        echo "1. Run the application deployment workflow" >> $GITHUB_STEP_SUMMARY
+        echo "2. **Manually** run the 'Seed Database' workflow to populate sample data" >> $GITHUB_STEP_SUMMARY
+        echo "3. Test the application endpoints" >> $GITHUB_STEP_SUMMARY
