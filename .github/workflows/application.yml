@@ -202,7 +202,7 @@ jobs:
 
     - name: 'Build project'
       working-directory: ./frontend
-      run: npm run build
+      run: npm run build -- --configuration production
 
     - name: 'Run tests'
       working-directory: ./frontend
