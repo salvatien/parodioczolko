@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { GameStateService } from '../../services/game-state.service';
+import { TimerService } from '../../services/timer.service';
 
 @Component({
   selector: 'app-game-summary',
@@ -15,10 +16,12 @@ export class GameSummaryComponent implements OnInit {
   timeElapsed = 0;
   accuracy = 0;
   performance = '';
+  gameDuration = 60;
   
   constructor(
     private router: Router,
-    private gameState: GameStateService
+    private gameState: GameStateService,
+    private timerService: TimerService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +29,7 @@ export class GameSummaryComponent implements OnInit {
     this.score = gameData.score;
     this.totalSongs = gameData.totalSongs;
     this.timeElapsed = gameData.timeElapsed;
+    this.gameDuration = this.timerService.getGameDuration();
     this.accuracy = this.totalSongs > 0 ? Math.round((this.score / this.totalSongs) * 100) : 0;
     this.performance = this.getPerformanceLevel();
   }

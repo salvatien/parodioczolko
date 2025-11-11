@@ -44,6 +44,10 @@ export class GameComponent implements OnInit, OnDestroy {
     this.score = 0;
     this.totalSongs = 0;
     
+    // Set the timer duration (should already be set by welcome component)
+    // But ensure we use the correct duration for display
+    this.timeLeft = this.timerService.getGameDuration();
+    
     // Start timer
     this.timerService.startTimer();
     
