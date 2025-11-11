@@ -142,24 +142,25 @@
   width: 100%;
 
   .song-info {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 
     .song-title {
-      font-size: 1.8rem;
+      font-size: 2.5rem;
       font-weight: bold;
-      margin: 0 0 1rem 0;
+      margin: 0 0 1.5rem 0;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
       line-height: 1.2;
     }
 
     .song-artist {
-      font-size: 1.3rem;
-      margin: 0 0 0.5rem 0;
+      font-size: 1.6rem;
+      margin: 0 0 0.8rem 0;
       opacity: 0.9;
+      font-weight: 500;
     }
 
     .song-year {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       opacity: 0.8;
       margin: 0;
     }
@@ -167,26 +168,26 @@
 
   .action-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
   }
 }
 
 .btn {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 1.5rem 3rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   border: none;
-  border-radius: 50px;
+  border-radius: 60px;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 120px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
   &:active {
@@ -280,15 +281,16 @@
 
     .song-info {
       .song-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
       }
 
       .song-artist {
-        font-size: 1.1rem;
+        font-size: 1.4rem;
       }
 
       .song-year {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
 
@@ -307,10 +309,13 @@
     .action-buttons {
       flex-direction: column;
       align-items: center;
+      gap: 1.5rem;
 
       .btn {
         width: 100%;
-        max-width: 250px;
+        max-width: 280px;
+        padding: 1.2rem 2rem;
+        font-size: 1.2rem;
       }
     }
   }
@@ -328,13 +333,14 @@
   .song-card {
     .song-info {
       .song-title {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
       }
     }
 
     .btn {
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      min-width: 140px;
     }
   }
 }

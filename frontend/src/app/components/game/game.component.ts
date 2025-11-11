@@ -118,16 +118,11 @@ export class GameComponent implements OnInit, OnDestroy {
     // Reset timer to 60 seconds
     this.timerService.resetTimer();
     
-    // Reset score and songs count
-    this.score = 0;
-    this.totalSongs = 0;
-    this.timeLeft = 60;
-    
     // Reset game state service
     this.gameStateService.resetGame();
     
-    // Start new game
-    this.startGame();
+    // Navigate to welcome screen
+    this.router.navigate(['/welcome']);
   }
 
   formatTime(seconds: number): string {

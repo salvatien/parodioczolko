@@ -42,18 +42,4 @@ export class GameSummaryComponent implements OnInit {
     this.gameState.resetGame();
     this.router.navigate(['/welcome']);
   }
-
-  shareResults(): void {
-    const text = `I scored ${this.score}/${this.totalSongs} (${this.accuracy}%) in Parodioczołko! 🎵 Can you beat my score?`;
-    if (navigator.share) {
-      navigator.share({
-        title: 'Parodioczołko Score',
-        text: text
-      });
-    } else {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Score copied to clipboard!');
-      });
-    }
-  }
 }
