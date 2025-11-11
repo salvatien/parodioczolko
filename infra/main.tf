@@ -1,6 +1,6 @@
 # Parodioczolko Infrastructure
 # This Terraform configuration deploys:
-# - Azure Functions for the .NET API (Flex Consumption plan for cost optimization)
+# - Azure Functions for the .NET API (Consumption plan for cost optimization)
 # - Static Web App for Angular frontend (Free tier)
 # - Uses existing Cosmos DB account (data source)
 # - Application Insights for monitoring
@@ -105,15 +105,15 @@ resource "azurerm_application_insights" "appinsights" {
   tags = local.common_tags
 }
 
-# App Service Plan for Functions (Flex Consumption)
+# App Service Plan for Functions (Consumption plan)
 resource "azurerm_service_plan" "functions" {
   name                = "asp-parodioczolko-${var.environment}"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   
-  # Flex Consumption plan
+  # Consumption plan (Y1) - still cost-effective and serverless
   os_type  = "Linux"
-  sku_name = "FC1"
+  sku_name = "Y1"
 
   tags = local.common_tags
 }
@@ -148,7 +148,6 @@ resource "azurerm_linux_function_app" "api" {
 
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME"       = "dotnet-isolated"
-    "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1"
     
     # Application Insights
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.appinsights.instrumentation_key
