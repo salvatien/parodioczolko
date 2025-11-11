@@ -5,6 +5,12 @@
       <p class="performance">{{ performance }}</p>
     </div>
 
+    <div class="actions">
+      <button class="play-again-button" (click)="playAgain()">
+        🔄 Play Again
+      </button>
+    </div>
+
     <div class="score-display">
       <div class="main-score">
         <span class="score-number">{{ score }}</span>
@@ -38,28 +44,6 @@
         <div class="stat-value">{{ totalSongs }}</div>
         <div class="stat-label">Songs Played</div>
       </div>
-    </div>
-
-    <div class="achievements" *ngIf="accuracy >= 50">
-      <h3>🏆 Achievement Unlocked!</h3>
-      <div class="achievement" *ngIf="accuracy >= 80">
-        <span class="achievement-icon">🎵</span>
-        <span class="achievement-text">Music Master</span>
-      </div>
-      <div class="achievement" *ngIf="accuracy >= 60 && accuracy < 80">
-        <span class="achievement-icon">🎶</span>
-        <span class="achievement-text">Song Expert</span>
-      </div>
-      <div class="achievement" *ngIf="accuracy >= 50 && accuracy < 60">
-        <span class="achievement-icon">🎤</span>
-        <span class="achievement-text">Rising Star</span>
-      </div>
-    </div>
-
-    <div class="actions">
-      <button class="play-again-button" (click)="playAgain()">
-        🔄 Play Again
-      </button>
     </div>
 
     <div class="tips" *ngIf="accuracy < 50">
