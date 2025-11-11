@@ -1,23 +1,4 @@
 <div class="game-container">
-  <!-- Header with Score and Timer -->
-  <header class="game-header">
-    <h1>🎵 Parodioczolko</h1>
-    
-    <div class="game-stats">
-      <div class="timer-section" [ngClass]="{'time-warning': isTimeRunningOut}">
-        <div class="timer-icon">⏰</div>
-        <div class="timer-display">{{ formatTime(timeLeft) }}</div>
-      </div>
-      
-      <div class="score-section">
-        <div class="score">Score: {{ score }}/{{ totalSongs }}</div>
-        <div class="success-rate" *ngIf="totalSongs > 0">
-          Success Rate: {{ successRate }}%
-        </div>
-      </div>
-    </div>
-  </header>
-
   <!-- Main Game Area -->
   <main class="game-main">
     <!-- Loading State -->
@@ -61,13 +42,31 @@
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Bottom Bar with Title, Stats, and Reset -->
   <footer class="game-footer">
-    <button 
-      class="btn btn-reset" 
-      (click)="resetGame()"
-      aria-label="Reset the game">
-      🔄 Reset Game
-    </button>
+    <div class="footer-left">
+      <div class="timer-section" [ngClass]="{'time-warning': isTimeRunningOut}">
+        <div class="timer-icon">⏰</div>
+        <div class="timer-display">{{ formatTime(timeLeft) }}</div>
+      </div>
+    </div>
+    
+    <div class="footer-center">
+      <div class="score-section">
+        <div class="score">{{ score }}/{{ totalSongs }}</div>
+        <div class="success-rate" *ngIf="totalSongs > 0">
+          {{ successRate }}%
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-right">
+      <button 
+        class="btn btn-reset" 
+        (click)="resetGame()"
+        aria-label="Reset the game">
+        🔄 Reset
+      </button>
+    </div>
   </footer>
 </div>
