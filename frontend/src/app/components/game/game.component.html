@@ -4,15 +4,15 @@
     <!-- Loading State -->
     <div *ngIf="isLoading" class="loading">
       <div class="spinner"></div>
-      <p>Loading next song...</p>
+      <p>Ładowanie...</p>
     </div>
 
     <!-- Error State -->
     <div *ngIf="error && !isLoading" class="error">
-      <h3>😕 Oops!</h3>
+      <h3>😕 Ups!</h3>
       <p>{{ error }}</p>
       <button class="btn btn-primary" (click)="loadNextSong()">
-        Try Again
+        Spróbuj ponownie
       </button>
     </div>
 
@@ -30,24 +30,24 @@
          (touchmove)="onTouchMove($event)">
       <div class="song-info">
         <h2 class="song-title">{{ currentSong.name }}</h2>
-        <p class="song-artist">by <strong>{{ currentSong.artist }}</strong></p>
-        <p class="song-year">Released in <strong>{{ currentSong.year }}</strong></p>
-        <p class="swipe-hint">💡 Swipe ← to skip, swipe → to mark correct</p>
+        <p class="song-artist">{{ currentSong.artist }}</p>
+        <p class="song-year">Wydano w roku <strong>{{ currentSong.year }}</strong></p>
+        <p class="swipe-hint">💡 Przesuń w lewo, aby pominąć; przesuń w prawo, aby zaznaczyć jako OK</p>
       </div>
 
       <!-- Action Buttons -->
       <div class="action-buttons">
         <button 
-          class="btn btn-success" 
-          (click)="onCorrect()"
-          [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
-          ✅ Correct
-        </button>
-        <button 
           class="btn btn-warning" 
           (click)="onSkip()"
           [attr.aria-label]="'Skip ' + currentSong.name">
-          ⏭️ Skip
+          ⏭️ Pomiń
+        </button>
+        <button 
+          class="btn btn-success" 
+          (click)="onCorrect()"
+          [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
+          ✅ OK
         </button>
       </div>
     </div>
@@ -76,7 +76,7 @@
         class="btn btn-reset" 
         (click)="resetGame()"
         aria-label="Reset the game">
-        🔄 Reset
+        🔄 Restart
       </button>
     </div>
   </footer>

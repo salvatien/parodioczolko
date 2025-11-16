@@ -1,23 +1,12 @@
 <div class="welcome-container">
   <div class="welcome-card">
     <div class="logo">
-      <h1>🎵 Parodioczołko</h1>
-      <p class="subtitle">Song Guessing Game</p>
-    </div>
-    
-    <div class="game-info">
-      <h2>How to Play</h2>
-      <ul>
-        <li>🎯 Choose your time limit and guess as many songs as possible</li>
-        <li>🎵 Listen to each song and try to identify the title</li>
-        <li>✅ Click "Correct" if you know the song</li>
-        <li>⏭️ Click "Skip" if you don't know it</li>
-        <li>📊 See your score and accuracy at the end!</li>
-      </ul>
+      <h1>🎵 Parodioczółko</h1>
+      <p class="subtitle">Zgadnij co to za piosenka!</p>
     </div>
 
     <div class="timer-options">
-      <h3>⏱️ Choose Your Challenge</h3>
+      <h3>⏱️ Wybierz długość rundy</h3>
       <div class="timer-buttons">
         <button 
           *ngFor="let duration of timerOptions"
@@ -26,7 +15,7 @@
           (click)="selectDuration(duration)">
           <div class="timer-duration">{{ duration }}s</div>
           <div class="timer-label">
-            {{ duration === 60 ? 'Quick' : duration === 90 ? 'Standard' : 'Extended' }}
+            {{ duration === 60 ? 'Szybko' : duration === 90 ? 'Normalnie' : 'Długo' }}
           </div>
         </button>
       </div>
@@ -34,23 +23,24 @@
 
     <div class="stats-preview">
       <div class="stat-item">
-        <span class="stat-number">50+</span>
-        <span class="stat-label">Songs</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">{{ selectedDuration }}s</span>
-        <span class="stat-label">Timer</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">🏆</span>
-        <span class="stat-label">Challenge</span>
+        <span class="stat-number">{{ totalSongs }}</span>
+        <span class="stat-label">Piosenek</span>
       </div>
     </div>
 
     <button class="start-button" (click)="startGame()">
-      🚀 Start Game
+      🚀 Rozpocznij grę
     </button>
 
-    <p class="tip">💡 Turn up your volume for the best experience!</p>
+    <div class="game-info">
+      <h2>Jak grać</h2>
+      <ul>
+        <li>🎯 Wybierz limit czasu i zgadnij jak najwięcej piosenek</li>
+        <li>✅ Kliknij "OK", jeśli udało się zgadnąć piosenkę</li>
+        <li>⏭️ Kliknij "Pomiń", jeśli się nie udało</li>
+      </ul>
+    </div>
+
+    <p class="tip">Chwała wielkiemu Szymokowi!</p>
   </div>
 </div>

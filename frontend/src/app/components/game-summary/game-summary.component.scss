@@ -181,30 +181,6 @@
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
-.tips {
-  margin-top: 30px;
-  padding: 20px;
-  background: #e8f4fd;
-  border-radius: 12px;
-  text-align: left;
-}
-
-.tips h4 {
-  margin: 0 0 15px 0;
-  color: #0066cc;
-  text-align: center;
-}
-
-.tips ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.tips li {
-  margin: 8px 0;
-  color: #333;
-  line-height: 1.4;
-}
 
 /* Mobile responsiveness */
 @media (max-width: 600px) {
@@ -227,11 +203,6 @@
   
   .total-number {
     font-size: 2rem;
-  }
-  
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
   }
   
   .actions {

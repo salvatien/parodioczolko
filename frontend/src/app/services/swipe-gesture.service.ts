@@ -34,8 +34,8 @@ export class SwipeGestureService {
   });
   
   private config: SwipeConfig = {
-    minSwipeDistance: 100,
-    maxVerticalDistance: 50,
+    minSwipeDistance: 80,
+    maxVerticalDistance: 200, // Much more forgiving - allows diagonal swipes
     maxOffset: 150,
     sensitivity: 0.8
   };
@@ -64,8 +64,8 @@ export class SwipeGestureService {
     const deltaX = touch.clientX - this.touchStartX;
     const deltaY = Math.abs(touch.clientY - this.touchStartY);
     
-    // Check if this is a horizontal swipe
-    if (Math.abs(deltaX) > deltaY && Math.abs(deltaX) > 20) {
+    // Check if there's meaningful horizontal movement (more forgiving for diagonal swipes)
+    if (Math.abs(deltaX) > 20 && deltaY <= this.config.maxVerticalDistance) {
       this.updateSwipeAnimation(deltaX);
       return true; // Indicate that we should prevent default
     }
