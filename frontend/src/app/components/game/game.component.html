@@ -41,13 +41,13 @@
           class="btn btn-warning" 
           (click)="onSkip()"
           [attr.aria-label]="'Skip ' + currentSong.name">
-          ⏭️ Pomiń
+          Pomiń
         </button>
         <button 
           class="btn btn-success" 
           (click)="onCorrect()"
           [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
-          ✅ OK
+          OK
         </button>
       </div>
     </div>
@@ -76,7 +76,7 @@
         class="btn btn-reset" 
         (click)="resetGame()"
         aria-label="Reset the game">
-        🔄 Restart
+        🔄 Reset
       </button>
     </div>
   </footer>
