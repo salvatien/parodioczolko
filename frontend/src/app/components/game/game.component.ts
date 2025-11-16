@@ -184,7 +184,7 @@ export class GameComponent implements OnInit, OnDestroy {
         } else {
           this.onSkip();
         }
-      }, 400); // Match the CSS animation duration
+      }, 200); // Match the CSS animation duration (faster)
     }
   }
 

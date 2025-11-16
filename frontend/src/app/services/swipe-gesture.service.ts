@@ -158,7 +158,7 @@ export class SwipeGestureService {
       this.updateSwipeState({
         isNewCard: false
       });
-    }, 500);
+    }, 250);
   }
 
   private updateSwipeState(newState: Partial<SwipeState>): void {
