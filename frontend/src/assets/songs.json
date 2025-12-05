@@ -140,7 +140,7 @@
   {
     "id": "2e5f1952-0d2d-4c04-8a35-1005fa9ca161",
     "artist": "Schola Camerata",
-    "name": "\"Niech Mówią, że to Nie Jest Miłość\"",
+    "name": "Niech Mówią, że to Nie Jest Miłość",
     "year": 2024
   },
   {
@@ -379,7 +379,7 @@
   },
   {
     "id": "270507d7-263d-444c-8f1f-d23b17bcc798",
-    "artist": "\"Earth, Wind & Fire\"",
+    "artist": "Earth, Wind & Fire",
     "name": "September",
     "year": 1978
   },
@@ -440,7 +440,7 @@
   {
     "id": "c089baed-8c13-4170-9ca4-a29657b6e85a",
     "artist": "Crazy Ex-Girlfriend Cast",
-    "name": "\"Fit Hot Guys Have Problems Too (feat. Scott Michael Foster, David Hull & Vincent Rodriguez III)\"",
+    "name": "Fit Hot Guys Have Problems Too",
     "year": 2018
   },
   {
@@ -500,7 +500,7 @@
   {
     "id": "dbf23302-bba8-4a1f-bfbe-50e8378a3737",
     "artist": "Céline Dion",
-    "name": "My Heart Will Go On - Love Theme from \"Titanic\"",
+    "name": "My Heart Will Go On - from \"Titanic\"",
     "year": 1997
   },
   {
@@ -794,7 +794,13 @@
   {
     "id": "a10d1aa5-ac91-4495-b75a-47771da132ef",
     "artist": "ABBA",
-    "name": "\"Honey, Honey\"",
+    "name": "Honey, Honey",
     "year": 1974
+  },
+  {
+    "id": "b1e1f3e4-5f4e-4d2e-9f4e-3c6e8f7b9c2d",
+    "artist": "Taniec Wampirów (Teatr Muzyczny Roma)",
+    "name": "Na orbicie serc",
+    "year": 2005
   }
 ]
