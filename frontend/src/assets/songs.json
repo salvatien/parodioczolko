@@ -802,5 +802,65 @@
     "artist": "Taniec Wampirów (Teatr Muzyczny Roma)",
     "name": "Na orbicie serc",
     "year": 2005
+  },
+  {
+    "id": "578be2e1-2db9-4932-aa12-ea9098349d46",
+    "artist": "Sasha Lopez",
+    "name": "Koukou Move",
+    "year": 2015
+  },
+  {
+    "id": "0798468e-38c9-499c-8937-f268e2fa320d",
+    "artist": "Maryla Rodowicz",
+    "name": "Szparka Sekretarka",
+    "year": 1986
+  },
+  {
+    "id": "6da61718-7c53-429f-a454-05d1a45d181e",
+    "artist": "Bob the Drag Queen",
+    "name": "Purse first",
+    "year": 2016
+  },
+  {
+    "id": "4a86b97e-6b5f-403e-9afe-3b5789e549d1",
+    "artist": "Daddy Yankee",
+    "name": "Gasolina",
+    "year": 2004
+  },
+  {
+    "id": "51a03d40-acc6-4f9d-8b19-61d9e403311b",
+    "artist": "Sylvia Baudelaire",
+    "name": "Rucham ci starego",
+    "year": 2023
+  },
+  {
+    "id": "2098593d-551f-49d5-bfc7-2b3821831460",
+    "artist": "Young Leosia",
+    "name": "Szklanki",
+    "year": 2021
+  },
+  {
+    "id": "ef3f374e-5305-4588-a3cc-8d4c57976495",
+    "artist": "Young Leosia, Żabson",
+    "name": "Jungle Girl",
+    "year": 2021
+  },
+  {
+    "id": "7aeee7fc-69f7-499e-9cf2-bc2dfdb8ff7d",
+    "artist": "Mirami",
+    "name": "Sexualna (Nebezpeczna)",
+    "year": 2010
+  },
+  {
+    "id": "6d907d54-8fc0-4dab-9e02-0d5e10d039af",
+    "artist": "Maryla Rodowicz",
+    "name": "Małgośka",
+    "year": 1974
+  },
+  {
+    "id": "58ccce9a-b027-4d6b-9f52-01b6013bc303",
+    "artist": "Maryla Rodowicz",
+    "name": "Niech żyje bal",
+    "year": 1984
   }
 ]
