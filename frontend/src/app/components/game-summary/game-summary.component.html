@@ -1,0 +1,22 @@
+<div class="summary-container">
+  <div class="summary-card">
+    <div class="header">
+      <h1>🎵 Koniec!</h1>
+    </div>
+
+    <div class="actions">
+      <button class="play-again-button" (click)="playAgain()">
+        🔄 Zagraj ponownie
+      </button>
+    </div>
+
+    <div class="score-display">
+      <div class="main-score">
+        <span class="score-number">{{ score }}</span>
+        <span class="score-divider">/</span>
+        <span class="total-number">{{ totalSongs }}</span>
+      </div>
+      <p class="score-label">Zgadniętych piosenek - {{ performance }}</p>
+    </div>
+  </div>
+</div>

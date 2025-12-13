@@ -1,70 +1,83 @@
 <div class="game-container">
-  <!-- Header with Score -->
-  <header class="game-header">
-    <h1>🎵 Parodioczolko</h1>
-    <div class="score-section">
-      <div class="score">Score: {{ score }}/{{ totalSongs }}</div>
-      <div class="success-rate" *ngIf="totalSongs > 0">
-        Success Rate: {{ successRate }}%
-      </div>
-    </div>
-  </header>
-
   <!-- Main Game Area -->
   <main class="game-main">
     <!-- Loading State -->
     <div *ngIf="isLoading" class="loading">
       <div class="spinner"></div>
-      <p>Loading next song...</p>
+      <p>Ładowanie...</p>
     </div>
 
     <!-- Error State -->
     <div *ngIf="error && !isLoading" class="error">
-      <h3>😕 Oops!</h3>
+      <h3>😕 Ups!</h3>
       <p>{{ error }}</p>
       <button class="btn btn-primary" (click)="loadNextSong()">
-        Try Again
+        Spróbuj ponownie
       </button>
     </div>
 
     <!-- Song Display -->
-    <div *ngIf="currentSong && !isLoading && !error" class="song-card">
+    <div *ngIf="currentSong && !isLoading && !error" 
+         class="song-card"
+         [class.swipe-left]="swipeState.direction === 'left'"
+         [class.swipe-right]="swipeState.direction === 'right'"
+         [class.slide-out-left]="swipeState.isSlideOutActive && swipeState.slideDirection === 'left'"
+         [class.slide-out-right]="swipeState.isSlideOutActive && swipeState.slideDirection === 'right'"
+         [class.slide-in]="swipeState.isNewCard"
+         [style.transform]="swipeState.isSlideOutActive ? '' : 'translateX(' + swipeState.offset + 'px)'"
+         (touchstart)="onTouchStart($event)"
+         (touchend)="onTouchEnd($event)"
+         (touchmove)="onTouchMove($event)">
       <div class="song-info">
         <h2 class="song-title">{{ currentSong.name }}</h2>
-        <p class="song-artist">by <strong>{{ currentSong.artist }}</strong></p>
-        <p class="song-year">Released in <strong>{{ currentSong.year }}</strong></p>
-      </div>
-
-      <div class="game-instructions">
-        <p>🎯 Describe this song to others!</p>
-        <p>Did they guess it correctly?</p>
+        <p class="song-artist">{{ currentSong.artist }}</p>
+        <p class="song-year">Wydano w roku <strong>{{ currentSong.year }}</strong></p>
+        <p class="swipe-hint">💡 Przesuń w lewo, aby pominąć; przesuń w prawo, aby zaznaczyć jako OK</p>
       </div>
 
       <!-- Action Buttons -->
       <div class="action-buttons">
         <button 
-          class="btn btn-success" 
-          (click)="onCorrect()"
-          [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
-          ✅ Correct
-        </button>
-        <button 
           class="btn btn-warning" 
           (click)="onSkip()"
           [attr.aria-label]="'Skip ' + currentSong.name">
-          ⏭️ Skip
+          Pomiń
+        </button>
+        <button 
+          class="btn btn-success" 
+          (click)="onCorrect()"
+          [attr.aria-label]="'Mark ' + currentSong.name + ' as correct'">
+          OK
         </button>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Bottom Bar with Title, Stats, and Reset -->
   <footer class="game-footer">
-    <button 
-      class="btn btn-secondary" 
-      (click)="resetGame()"
-      *ngIf="totalSongs > 0">
-      🔄 Reset Game
-    </button>
+    <div class="footer-left">
+      <div class="timer-section" [ngClass]="{'time-warning': isTimeRunningOut}">
+        <div class="timer-icon">⏰</div>
+        <div class="timer-display">{{ formatTime(timeLeft) }}</div>
+      </div>
+    </div>
+    
+    <div class="footer-center">
+      <div class="score-section">
+        <div class="score">{{ score }}/{{ totalSongs }}</div>
+        <div class="success-rate" *ngIf="totalSongs > 0">
+          {{ successRate }}%
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-right">
+      <button 
+        class="btn btn-reset" 
+        (click)="resetGame()"
+        aria-label="Reset the game">
+        🔄 Reset
+      </button>
+    </div>
   </footer>
 </div>

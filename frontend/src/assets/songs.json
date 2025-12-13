@@ -1,0 +1,806 @@
+[
+  {
+    "id": "2e34c0a8-01a8-4116-8f09-91639f4fafea",
+    "artist": "Rihanna",
+    "name": "Love On The Brain",
+    "year": 2016
+  },
+  {
+    "id": "3084895c-679d-4d19-9df9-f6c0ba20d9d6",
+    "artist": "Idina Menzel",
+    "name": "Let It Go - From \"Frozen\"/Soundtrack Version",
+    "year": 2013
+  },
+  {
+    "id": "0dc85814-1bad-4990-a548-ad082f3d2b99",
+    "artist": "Rihanna",
+    "name": "Man Down",
+    "year": 2010
+  },
+  {
+    "id": "b2d4f0e5-86f2-4778-b845-e444ca5247c3",
+    "artist": "Rihanna",
+    "name": "Umbrella",
+    "year": 2008
+  },
+  {
+    "id": "201ed707-543b-4e9d-8479-c57ef830fa42",
+    "artist": "Adele",
+    "name": "Rolling in the Deep",
+    "year": 2011
+  },
+  {
+    "id": "ea6c29b4-e9e5-4a57-9482-97226c9f6bca",
+    "artist": "Adele",
+    "name": "Someone Like You",
+    "year": 2011
+  },
+  {
+    "id": "dda77e36-cc03-4ada-b06c-858e14733dbe",
+    "artist": "Lady Gaga",
+    "name": "Shallow",
+    "year": 2018
+  },
+  {
+    "id": "281fc85f-43a9-4251-b0d6-10e8b279d7ca",
+    "artist": "Jeden Osiem L",
+    "name": "Jak zapomnieć",
+    "year": 2003
+  },
+  {
+    "id": "90290fd7-eef5-45aa-b27e-7450c055b52a",
+    "artist": "Brodka",
+    "name": "Mial byc slub...",
+    "year": 2006
+  },
+  {
+    "id": "dd5523f9-b5f1-4b22-8851-8c4979b478e3",
+    "artist": "Gloria Gaynor",
+    "name": "I Will Survive",
+    "year": 1978
+  },
+  {
+    "id": "78b3f603-6e51-47de-91ee-4d5e8098ff6d",
+    "artist": "Bonnie Tyler",
+    "name": "Holding Out for a Hero - Single Version",
+    "year": 2009
+  },
+  {
+    "id": "84854395-5031-458f-9f20-1379004642e2",
+    "artist": "Ich Troje",
+    "name": "Zawsze Z Toba Chcialbym Byc... (Przez Miesiac :) )",
+    "year": 2001
+  },
+  {
+    "id": "a5d2fde4-5d90-4e29-82f2-7b248a916145",
+    "artist": "Jacuś",
+    "name": "Rakieta",
+    "year": 2020
+  },
+  {
+    "id": "f6d81668-736a-4d7c-a21c-77b3f0fd782f",
+    "artist": "Lady Rafaella",
+    "name": "Ananasik",
+    "year": 2025
+  },
+  {
+    "id": "07f38c8e-79cb-4906-b31e-4646ea503de9",
+    "artist": "Sylvia Baudelaire",
+    "name": "Wyruchaj Mi Cipę",
+    "year": 2023
+  },
+  {
+    "id": "4d49f40d-03f6-418c-a4af-b10e8c919d3f",
+    "artist": "Sandra S",
+    "name": "Big Klamoty",
+    "year": 2021
+  },
+  {
+    "id": "a954ef44-761d-44ad-9056-fb4fe8dd99cc",
+    "artist": "Edyta Górniak",
+    "name": "Kolorowy Wiatr",
+    "year": 2003
+  },
+  {
+    "id": "ab9450dd-d6e8-4c77-9907-830a11585d05",
+    "artist": "Panic! At The Disco",
+    "name": "High Hopes",
+    "year": 2018
+  },
+  {
+    "id": "273c442c-cfe0-4e4f-a199-e76f96639979",
+    "artist": "Måneskin",
+    "name": "I WANNA BE YOUR SLAVE",
+    "year": 2021
+  },
+  {
+    "id": "ccb3cc58-cddb-4de1-83ea-dc8a187b9fe0",
+    "artist": "Beyoncé",
+    "name": "Halo",
+    "year": 2008
+  },
+  {
+    "id": "857ffb61-5d13-4526-b294-b8535dace4d8",
+    "artist": "Taylor Swift",
+    "name": "I Knew You Were Trouble.",
+    "year": 2012
+  },
+  {
+    "id": "a55d2082-66bf-403b-a0c3-3ea99007beef",
+    "artist": "Virgin",
+    "name": "Dzaga",
+    "year": 2004
+  },
+  {
+    "id": "e51f6bf5-d1d7-47f6-91d4-9c65c8c8d46d",
+    "artist": "Virgin",
+    "name": "2 Bajki",
+    "year": 2006
+  },
+  {
+    "id": "2e5f1952-0d2d-4c04-8a35-1005fa9ca161",
+    "artist": "Schola Camerata",
+    "name": "Niech Mówią, że to Nie Jest Miłość",
+    "year": 2024
+  },
+  {
+    "id": "e67aa97d-f58f-405d-ad65-9023b1843f06",
+    "artist": "Lady Gaga",
+    "name": "Bad Romance",
+    "year": 2009
+  },
+  {
+    "id": "5d9d0cae-398f-465f-963b-fc31259a4617",
+    "artist": "Lady Gaga",
+    "name": "Abracadabra",
+    "year": 2025
+  },
+  {
+    "id": "4fb8855d-4a6a-4b84-a987-0cd55c8cb02d",
+    "artist": "Lady Gaga",
+    "name": "Poker Face",
+    "year": 2008
+  },
+  {
+    "id": "75eeb7b7-b3ab-4f62-ad33-60e7d083f8a3",
+    "artist": "Britney Spears",
+    "name": "Toxic",
+    "year": 2003
+  },
+  {
+    "id": "d64a0b0d-46a7-41c1-b85f-1a99b080fdf7",
+    "artist": "Britney Spears",
+    "name": "...Baby One More Time",
+    "year": 1999
+  },
+  {
+    "id": "80cfe82f-d8e7-4a39-9e28-78f94efaad85",
+    "artist": "ABBA",
+    "name": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+    "year": 1979
+  },
+  {
+    "id": "c8f4e175-4e69-455a-8058-2e1af884fa4d",
+    "artist": "Pitbull",
+    "name": "Give Me Everything (feat. Nayer)",
+    "year": 2011
+  },
+  {
+    "id": "7bcfddd7-023a-4f77-9740-1517881e0c11",
+    "artist": "Pitbull",
+    "name": "Fireball (feat. John Ryan)",
+    "year": 2014
+  },
+  {
+    "id": "a617e965-acee-4800-b8a5-ddfee9925bab",
+    "artist": "Pitbull",
+    "name": "Hotel Room Service",
+    "year": 2009
+  },
+  {
+    "id": "b5a2dfdb-44ea-4e1e-9906-17d5ecd1766e",
+    "artist": "Carly Rae Jepsen",
+    "name": "Call Me Maybe",
+    "year": 2012
+  },
+  {
+    "id": "2cd3e40c-eeff-45eb-b32f-ee25ae3616e5",
+    "artist": "Katy Perry",
+    "name": "I Kissed A Girl",
+    "year": 2008
+  },
+  {
+    "id": "7bcd2088-7a99-4a09-b650-87fa80b72190",
+    "artist": "Baby Lasagna",
+    "name": "Rim Tim Tagi Dim",
+    "year": 2025
+  },
+  {
+    "id": "d65fc167-9afb-42b7-a15d-b2c27b23c88d",
+    "artist": "Käärijä",
+    "name": "Cha Cha Cha",
+    "year": 2023
+  },
+  {
+    "id": "a7985069-d570-4560-9b16-29e46067b0e1",
+    "artist": "BLANKA",
+    "name": "Solo",
+    "year": 2022
+  },
+  {
+    "id": "761c3e5d-780d-4237-b75d-8758f068fd52",
+    "artist": "Verka Serduchka",
+    "name": "Dancing Lasha Tumbai",
+    "year": 2010
+  },
+  {
+    "id": "505b6f52-9a20-4dfe-b4a5-a5abddb74b3a",
+    "artist": "ABBA",
+    "name": "Dancing Queen",
+    "year": 1976
+  },
+  {
+    "id": "4e56980c-cdb8-4b1b-b45b-1ef3bbfcd662",
+    "artist": "Backstreet Boys",
+    "name": "Everybody (Backstreet's Back) - Radio Edit",
+    "year": 1997
+  },
+  {
+    "id": "6181ac28-4023-4a00-a1f2-58fc0880a313",
+    "artist": "Sia",
+    "name": "Cheap Thrills (feat. Sean Paul)",
+    "year": 2016
+  },
+  {
+    "id": "38ce472f-4bb8-44f5-b37a-0ede3dcf7cbd",
+    "artist": "Natasha Bedingfield",
+    "name": "Unwritten",
+    "year": 2004
+  },
+  {
+    "id": "9f2cad05-44f3-44c4-91f5-ceb16a56dcb5",
+    "artist": "Elton John",
+    "name": "I'm Still Standing",
+    "year": 1983
+  },
+  {
+    "id": "00d2d3cf-182c-4094-8ba3-8f72aa4a58c7",
+    "artist": "Initial D",
+    "name": "Deja Vu",
+    "year": 2017
+  },
+  {
+    "id": "9599ee7d-6103-43ca-94c1-6db3e500dba2",
+    "artist": "SHAMAN KING",
+    "name": "Shaman King (English Version)",
+    "year": 2021
+  },
+  {
+    "id": "e68f23b1-28fa-4f35-bc4b-d78af7a6f406",
+    "artist": "George Michael",
+    "name": "Careless Whisper - Remastered",
+    "year": 2024
+  },
+  {
+    "id": "f4f5c899-622b-4077-a6cb-3370fe724ebb",
+    "artist": "Evanescence",
+    "name": "Bring Me To Life",
+    "year": 2003
+  },
+  {
+    "id": "74279f0c-f299-48e3-9691-ec1986c5e39e",
+    "artist": "Smash Mouth",
+    "name": "All Star",
+    "year": 1999
+  },
+  {
+    "id": "c9a8c0e2-0c48-4df9-8053-8ed701dc36d3",
+    "artist": "Rick Astley",
+    "name": "Never Gonna Give You Up",
+    "year": 1987
+  },
+  {
+    "id": "7b727f2d-de65-48dc-bedb-023aac9b4ef3",
+    "artist": "Vanessa Carlton",
+    "name": "A Thousand Miles",
+    "year": 2002
+  },
+  {
+    "id": "0921e89f-9f68-499d-9903-07056b1b0368",
+    "artist": "Ellie Goulding",
+    "name": "Love Me Like You Do",
+    "year": 2025
+  },
+  {
+    "id": "2233cf3a-f342-45fc-a623-d56efef2b38b",
+    "artist": "GOLEC UORKIESTRA",
+    "name": "Ściernisco",
+    "year": 2000
+  },
+  {
+    "id": "cd0813d4-6f60-4191-946c-db6418f2354a",
+    "artist": "Kayah",
+    "name": "Prawy Do Lewego",
+    "year": 1999
+  },
+  {
+    "id": "ae0da571-1048-46d3-a59d-36653723efb7",
+    "artist": "O-Zone",
+    "name": "Dragostea din tei",
+    "year": 2004
+  },
+  {
+    "id": "05460c3d-e772-4cf1-952f-e4b97a40ebf1",
+    "artist": "Bonnie Tyler",
+    "name": "Total Eclipse of the Heart",
+    "year": 2009
+  },
+  {
+    "id": "4a46d8b7-2022-4171-8cc2-3e121019e3f2",
+    "artist": "Bon Jovi",
+    "name": "It's My Life",
+    "year": 2000
+  },
+  {
+    "id": "8d91f88f-c735-4380-a59a-4b0c32a9dac9",
+    "artist": "Geri Halliwell",
+    "name": "It's Raining Men",
+    "year": 2001
+  },
+  {
+    "id": "18202a7e-76ee-4174-8192-5b0b10177186",
+    "artist": "Boney M.",
+    "name": "Daddy Cool",
+    "year": 1976
+  },
+  {
+    "id": "e590dcdc-e9a2-471a-b67c-77c381adcbe9",
+    "artist": "Nicki Minaj",
+    "name": "Starships",
+    "year": 2012
+  },
+  {
+    "id": "f7357d23-eced-4501-b4f2-c18f00b3e4eb",
+    "artist": "Daddy Yankee",
+    "name": "Gasolina",
+    "year": 2004
+  },
+  {
+    "id": "6a9b7a07-ab0d-40dd-a498-3270c4a8f7a4",
+    "artist": "DJ Snake",
+    "name": "Turn Down for What",
+    "year": 2013
+  },
+  {
+    "id": "402a0cc5-fbd0-4642-a255-4478e1c98bc1",
+    "artist": "Major Lazer",
+    "name": "Lean On",
+    "year": 2015
+  },
+  {
+    "id": "270507d7-263d-444c-8f1f-d23b17bcc798",
+    "artist": "Earth, Wind & Fire",
+    "name": "September",
+    "year": 1978
+  },
+  {
+    "id": "4fb3db0a-31bc-460e-aacf-eebcc2a4f0a4",
+    "artist": "Ariana Grande",
+    "name": "Popular",
+    "year": 2024
+  },
+  {
+    "id": "cc482fe2-4106-41f1-aafa-a1bbcfd0b7c8",
+    "artist": "Fergie",
+    "name": "Fergalicious",
+    "year": 2006
+  },
+  {
+    "id": "a37a9f3e-ce5e-4703-9eaa-5e65a3c8ea37",
+    "artist": "Modjo",
+    "name": "Lady - Hear Me Tonight",
+    "year": 2001
+  },
+  {
+    "id": "43a3810e-d779-4ff2-8e22-c431c957f1f1",
+    "artist": "RuPaul",
+    "name": "Sissy That Walk",
+    "year": 2014
+  },
+  {
+    "id": "337ffc06-f91b-40a7-8011-197c4200a0db",
+    "artist": "PSY",
+    "name": "Gangnam Style (강남스타일)",
+    "year": 2012
+  },
+  {
+    "id": "472b6b49-c47e-4f04-a5d1-997408a63544",
+    "artist": "The Pussycat Dolls",
+    "name": "Buttons",
+    "year": 2005
+  },
+  {
+    "id": "45802aba-d499-4185-9164-385232a5441f",
+    "artist": "Village People",
+    "name": "YMCA",
+    "year": 1980
+  },
+  {
+    "id": "54a40d7d-1ed9-4a41-9113-4c26bfa7c67b",
+    "artist": "Boney M.",
+    "name": "Rasputin",
+    "year": 1994
+  },
+  {
+    "id": "223187fa-37d4-4007-8831-84a40bd5450e",
+    "artist": "Crazy Ex-Girlfriend Cast",
+    "name": "You Stupid Bitch (feat. Rachel Bloom)",
+    "year": 2016
+  },
+  {
+    "id": "c089baed-8c13-4170-9ca4-a29657b6e85a",
+    "artist": "Crazy Ex-Girlfriend Cast",
+    "name": "Fit Hot Guys Have Problems Too",
+    "year": 2018
+  },
+  {
+    "id": "acfb6899-de09-49af-a2b6-ba13315aa4b5",
+    "artist": "Troy",
+    "name": "Bet On It",
+    "year": 2007
+  },
+  {
+    "id": "1b9b9202-12ad-4521-860f-156356bf39e9",
+    "artist": "Demi Lovato",
+    "name": "This Is Me",
+    "year": 2008
+  },
+  {
+    "id": "cb411654-e9e5-4265-a587-14e5a9184e7a",
+    "artist": "Crazy Ex-Girlfriend Cast",
+    "name": "What'll It Be? (feat. Santino Fontana)",
+    "year": 2016
+  },
+  {
+    "id": "bdb804e5-978f-442e-8da7-6ad4e22c3b90",
+    "artist": "Lil Nas X",
+    "name": "MONTERO (Call Me By Your Name)",
+    "year": 2021
+  },
+  {
+    "id": "c4d10a8e-fd20-4d46-ba6f-ce89b3d6a543",
+    "artist": "Hugh Jackman",
+    "name": "The Greatest Show",
+    "year": 2017
+  },
+  {
+    "id": "98b5b865-3c24-49e2-99fa-2ec4399eb132",
+    "artist": "Natalie Imbruglia",
+    "name": "Torn",
+    "year": 1997
+  },
+  {
+    "id": "8c53bdde-84a9-4285-8ddc-60a858ad2d1d",
+    "artist": "Nathan Evans",
+    "name": "Wellerman - Sea Shanty",
+    "year": 2021
+  },
+  {
+    "id": "ca6c01e4-f63d-418f-937b-6764211a6e30",
+    "artist": "Little Big",
+    "name": "Skibidi",
+    "year": 2018
+  },
+  {
+    "id": "ca7f4e59-d898-412e-8c74-abecefb58ddb",
+    "artist": "DJ Blyatman",
+    "name": "Instababe",
+    "year": 2021
+  },
+  {
+    "id": "dbf23302-bba8-4a1f-bfbe-50e8378a3737",
+    "artist": "Céline Dion",
+    "name": "My Heart Will Go On - from \"Titanic\"",
+    "year": 1997
+  },
+  {
+    "id": "a1c1c968-85ef-497d-bd18-304b833f0248",
+    "artist": "Anna Kendrick / Pitch Perfect",
+    "name": "Cups (When I’m Gone)",
+    "year": 2013
+  },
+  {
+    "id": "6d019104-3a10-4ce3-9ff7-ff7fa0f7dfce",
+    "artist": "Wham!",
+    "name": "Last Christmas",
+    "year": 1984
+  },
+  {
+    "id": "f8dfa34b-b492-435b-8a19-5523bedd1516",
+    "artist": "Mariah Carey",
+    "name": "All I Want for Christmas Is You",
+    "year": 1994
+  },
+  {
+    "id": "5eadafca-c770-4f5b-bf6d-4eb2084892fb",
+    "artist": "Ylvis",
+    "name": "The Fox (What Does the Fox Say?)",
+    "year": 2013
+  },
+  {
+    "id": "36b64621-0496-4bdd-b544-a92b5d46d552",
+    "artist": "ROSÉ",
+    "name": "APT.",
+    "year": 2024
+  },
+  {
+    "id": "cf24cb61-303b-4941-96d0-4a4f94124173",
+    "artist": "Leona Lewis",
+    "name": "Bleeding Love",
+    "year": 2007
+  },
+  {
+    "id": "e7c04ecf-039b-40a2-83f6-177d6b66f0d4",
+    "artist": "Iggy Azalea",
+    "name": "Fancy",
+    "year": 2014
+  },
+  {
+    "id": "75f49866-8096-4863-a7d0-f25e7a82d7e4",
+    "artist": "Darude",
+    "name": "Sandstorm",
+    "year": 2000
+  },
+  {
+    "id": "fd1d4356-e046-4a25-9115-74c186ab46ad",
+    "artist": "Billie Eilish",
+    "name": "bad guy",
+    "year": 2019
+  },
+  {
+    "id": "2cca170f-08f1-4cb5-baf1-380742e4968b",
+    "artist": "will.i.am",
+    "name": "Scream & Shout",
+    "year": 2013
+  },
+  {
+    "id": "5ab1fbbb-c3d8-483f-b0f6-3d03ca59972f",
+    "artist": "Iggy Azalea",
+    "name": "Black Widow",
+    "year": 2014
+  },
+  {
+    "id": "1dc5b299-4439-46d8-a1b0-cc3aee4f789a",
+    "artist": "Kesha",
+    "name": "TiK ToK",
+    "year": 2010
+  },
+  {
+    "id": "bb9ff60e-f71f-478b-b7ff-f063c1a591d0",
+    "artist": "Selena Gomez & The Scene",
+    "name": "Love You Like A Love Song",
+    "year": 2011
+  },
+  {
+    "id": "d99db391-ffee-44cc-b0f4-c6e3f7b2c7c4",
+    "artist": "Taylor Swift",
+    "name": "Blank Space",
+    "year": 2014
+  },
+  {
+    "id": "a744f142-de58-4235-8aa4-9f61dd3a19f0",
+    "artist": "Beyoncé",
+    "name": "Single Ladies (Put a Ring on It)",
+    "year": 2008
+  },
+  {
+    "id": "6af3856c-7dd9-40a4-902f-23ddeadf9024",
+    "artist": "Chappell Roan",
+    "name": "Pink Pony Club",
+    "year": 2023
+  },
+  {
+    "id": "40fd0ab5-34a4-47b2-b96f-94966bf684a2",
+    "artist": "P!nk",
+    "name": "Just Give Me a Reason (feat. Nate Ruess)",
+    "year": 2012
+  },
+  {
+    "id": "cbb35246-7565-41aa-8812-209f62989adb",
+    "artist": "Salvador",
+    "name": "Yabadabadoo",
+    "year": 2020
+  },
+  {
+    "id": "d805b9d8-e2a1-4388-a5ce-a15ee277bc57",
+    "artist": "Łydka Grubasa",
+    "name": "Rapapara",
+    "year": 2020
+  },
+  {
+    "id": "cfccf8ad-943a-4241-9544-50fbeea68def",
+    "artist": "Ronnie Ferrari",
+    "name": "Ona By Tak Chciała",
+    "year": 2019
+  },
+  {
+    "id": "7b75c869-0f7f-49cf-abe8-4139a2aeaba4",
+    "artist": "Bracia Figo Fagot",
+    "name": "Wóda zryje banię",
+    "year": 2016
+  },
+  {
+    "id": "a3a6808f-8bfe-4c26-b60d-6b8b69402ba3",
+    "artist": "Jessie J",
+    "name": "Bang Bang",
+    "year": 2014
+  },
+  {
+    "id": "79194302-484a-46d0-bb68-facab334aff0",
+    "artist": "Robin Thicke",
+    "name": "Blurred Lines",
+    "year": 2013
+  },
+  {
+    "id": "c755e7ab-d398-4721-a1ec-4410d085e56a",
+    "artist": "Miley Cyrus",
+    "name": "Wrecking Ball",
+    "year": 2013
+  },
+  {
+    "id": "ad6073d8-c254-40b0-bea1-ba291dcd0555",
+    "artist": "TOTO",
+    "name": "Africa",
+    "year": 1982
+  },
+  {
+    "id": "c710b6a5-69b0-4abf-b82e-d5581545fd81",
+    "artist": "Katy Perry",
+    "name": "Roar",
+    "year": 2013
+  },
+  {
+    "id": "4028076a-5929-49ac-a399-97080caef3da",
+    "artist": "Backstreet Boys",
+    "name": "I Want It That Way",
+    "year": 1999
+  },
+  {
+    "id": "2af06ba4-2922-44e0-8eea-37745a002875",
+    "artist": "Carolina Gaitán - La Gaita / Encanto Soundtrack",
+    "name": "We Don't Talk About Bruno",
+    "year": 2021
+  },
+  {
+    "id": "7e8ec4cc-2b8d-4bfa-9ae4-2623872999cd",
+    "artist": "Cleo",
+    "name": "Łowcy Gwiazd",
+    "year": 2018
+  },
+  {
+    "id": "afd554d6-ea26-4124-8b28-37204ce2656a",
+    "artist": "Camila Cabello",
+    "name": "Havana (feat. Young Thug)",
+    "year": 2018
+  },
+  {
+    "id": "05c7e419-d781-4201-82fb-83c1fac2fb6d",
+    "artist": "Luis Fonsi",
+    "name": "Despacito",
+    "year": 2019
+  },
+  {
+    "id": "78722acb-593d-47f0-86dc-f5fd8275e35d",
+    "artist": "Sia",
+    "name": "Chandelier",
+    "year": 2014
+  },
+  {
+    "id": "78b60153-4bfa-46fe-9a23-b18af956cefa",
+    "artist": "Robin Williams",
+    "name": "Prince Ali",
+    "year": 1992
+  },
+  {
+    "id": "735c2a44-8bf1-4274-8736-bf63d6b12529",
+    "artist": "Jason Derulo",
+    "name": "Talk Dirty",
+    "year": 2013
+  },
+  {
+    "id": "7b0159e5-c65e-4173-a90b-df8e51c91dca",
+    "artist": "Czadoman",
+    "name": "Będzie Bal",
+    "year": 2021
+  },
+  {
+    "id": "77905034-9d44-4244-bca2-517b52de236f",
+    "artist": "Sławomir",
+    "name": "Miłość w Zakopanem",
+    "year": 2017
+  },
+  {
+    "id": "762ca6e8-e6ae-4add-8220-a6db36d597ef",
+    "artist": "Sylwia Grzeszczak",
+    "name": "Tamta dziewczyna",
+    "year": 2016
+  },
+  {
+    "id": "77440261-7ee5-48ad-823b-8593bab6d1dc",
+    "artist": "Justyna Steczkowska",
+    "name": "GAJA",
+    "year": 2025
+  },
+  {
+    "id": "0d6f360d-6150-4f91-9a36-c17526922f78",
+    "artist": "Sokół",
+    "name": "W aucie",
+    "year": 2007
+  },
+  {
+    "id": "63601304-2a4a-45ba-8a34-12fe58f50c26",
+    "artist": "Borys LBD",
+    "name": "Lady in Red",
+    "year": 2017
+  },
+  {
+    "id": "c8bf4cf4-9507-49e3-9d66-9ea99c357fe5",
+    "artist": "Borys LBD",
+    "name": "Uczta u Dionizosa",
+    "year": 2018
+  },
+  {
+    "id": "a5740c23-c32d-41d5-9e94-0e6be088dcfe",
+    "artist": "Kalwi & Remi",
+    "name": "Explosion",
+    "year": 2006
+  },
+  {
+    "id": "c7e3adb0-8fac-4d22-a976-876a9c3ae546",
+    "artist": "Imagine Dragons",
+    "name": "Believer",
+    "year": 2017
+  },
+  {
+    "id": "d17e1ebe-a712-4bd2-85ef-6794ee5c2d70",
+    "artist": "HUNTR/X",
+    "name": "Golden",
+    "year": 2025
+  },
+  {
+    "id": "f1c642cd-aa25-4197-bf70-cde3b27a2d7c",
+    "artist": "Saja Boys",
+    "name": "Your Idol",
+    "year": 2025
+  },
+  {
+    "id": "37866b22-3188-45b8-a396-ade8e3b33a8b",
+    "artist": "VÆB",
+    "name": "RÓA",
+    "year": 2025
+  },
+  {
+    "id": "2ae8646b-683a-4f02-a529-191acb407739",
+    "artist": "Lady Gaga",
+    "name": "Born This Way",
+    "year": 2011
+  },
+  {
+    "id": "fb629a93-a297-484f-943c-d0d2dc0ba905",
+    "artist": "RuPaul",
+    "name": "Cover Girl",
+    "year": 2009
+  },
+  {
+    "id": "a10d1aa5-ac91-4495-b75a-47771da132ef",
+    "artist": "ABBA",
+    "name": "Honey, Honey",
+    "year": 1974
+  },
+  {
+    "id": "b1e1f3e4-5f4e-4d2e-9f4e-3c6e8f7b9c2d",
+    "artist": "Taniec Wampirów (Teatr Muzyczny Roma)",
+    "name": "Na orbicie serc",
+    "year": 2005
+  }
+]

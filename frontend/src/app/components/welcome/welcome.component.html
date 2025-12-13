@@ -1,0 +1,46 @@
+<div class="welcome-container">
+  <div class="welcome-card">
+    <div class="logo">
+      <h1>🎵 Parodioczółko</h1>
+      <p class="subtitle">Zgadnij co to za piosenka!</p>
+    </div>
+
+    <div class="timer-options">
+      <h3>⏱️ Wybierz długość rundy</h3>
+      <div class="timer-buttons">
+        <button 
+          *ngFor="let duration of timerOptions"
+          class="timer-button"
+          [class.selected]="selectedDuration === duration"
+          (click)="selectDuration(duration)">
+          <div class="timer-duration">{{ duration }}s</div>
+          <div class="timer-label">
+            {{ duration === 60 ? 'Szybko' : duration === 90 ? 'Normalnie' : 'Długo' }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="stats-preview">
+      <div class="stat-item">
+        <span class="stat-number">{{ totalSongs }}</span>
+        <span class="stat-label">Piosenek</span>
+      </div>
+    </div>
+
+    <button class="start-button" (click)="startGame()">
+      🚀 Rozpocznij grę
+    </button>
+
+    <div class="game-info">
+      <h2>Jak grać</h2>
+      <ul>
+        <li>🎯 Wybierz limit czasu i zgadnij jak najwięcej piosenek</li>
+        <li>✅ Kliknij "OK", jeśli udało się zgadnąć piosenkę</li>
+        <li>❌ Kliknij "Pomiń", jeśli się nie udało</li>
+      </ul>
+    </div>
+
+    <p class="tip">Chwała wielkiemu Szymokowi!</p>
+  </div>
+</div>

@@ -1,35 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Song } from '../models/song.model';
-import { environment } from '../../environments/environment';
+import songsData from '../../assets/songs.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SongService {
-  private readonly apiUrl = environment.apiUrl + '/api/songs';
-
-  constructor(private http: HttpClient) {}
+  private readonly songs: Song[] = songsData;
 
   /**
    * Get a random song for the game
    */
   getRandomSong(): Observable<Song> {
-    return this.http.get<Song>(`${this.apiUrl}/random`);
+    const randomIndex = Math.floor(Math.random() * this.songs.length);
+    const randomSong = this.songs[randomIndex];
+    return of(randomSong);
   }
 
   /**
    * Get all songs (for administration)
    */
   getAllSongs(): Observable<Song[]> {
-    return this.http.get<Song[]>(this.apiUrl);
+    return of(this.songs);
   }
 
   /**
    * Get a specific song by ID
    */
-  getSongById(id: string): Observable<Song> {
-    return this.http.get<Song>(`${this.apiUrl}/${id}`);
+  getSongById(id: string): Observable<Song | null> {
+    const song = this.songs.find(s => s.id === id);
+    return of(song || null);
+  }
+
+  /**
+   * Get total number of songs available
+   */
+  getTotalSongs(): number {
+    return this.songs.length;
   }
 }

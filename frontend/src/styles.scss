@@ -11,7 +11,7 @@ html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #222;
   overflow-x: hidden;
 }
 
@@ -23,6 +23,34 @@ body {
   /* Prevent zooming on input focus on iOS */
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  
+  /* LGBT Pride flag background for entire app */
+  position: relative;
+  background: 
+    linear-gradient(to bottom,
+      #E40303 0%, #E40303 16.66%,      // Red
+      #FF8C00 16.66%, #FF8C00 33.33%,  // Orange
+      #FFED00 33.33%, #FFED00 50%,     // Yellow
+      #008026 50%, #008026 66.66%,     // Green
+      #24408E 66.66%, #24408E 83.33%,  // Blue
+      #732982 83.33%, #732982 100%     // Purple
+    );
+  background-attachment: fixed;
+  
+  /* Frosted glass overlay */
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 /* Remove default button and input styles */

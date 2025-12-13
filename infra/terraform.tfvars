@@ -1,10 +1,6 @@
-# Terraform configuration file for development environment
+# Terraform configuration file for development environment - Frontend Only
 environment = "dev"
 location    = "West Europe"
 
-# Enable monitoring
-enable_monitoring = true
-
-# Existing Cosmos DB (replace with your actual values)
-existing_cosmos_db_name = "kgtcosmosdb"
-existing_cosmos_db_resource_group = "kgt-shared-environment"
+# Note: Backend infrastructure (Functions, Cosmos DB, monitoring) removed
+# This configuration now only deploys the Static Web App for frontend-only architecture
