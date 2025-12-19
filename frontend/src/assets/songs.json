@@ -892,5 +892,41 @@
     "artist": "Maryla Rodowicz",
     "name": "Niech żyje bal",
     "year": 1984
+  },
+  {
+    "id": "acf37e9f-1a8d-4fb6-b45b-c76c27301ef1",
+    "artist": "Imagine Dragons",
+    "name": "Bones",
+    "year": 2022
+  },
+  {
+    "id": "50ceb999-aa89-46d8-a184-62c79adc1dbd",
+    "artist": "Chase Noseworthy",
+    "name": "Three Kobolds in a Trench Coat",
+    "year": 2024
+  },
+  {
+    "id": "4a6cb86c-5a97-4c12-9029-39a05e93604a",
+    "artist": "Vesna",
+    "name": "My Sister's Crown",
+    "year": 2023
+  },
+  {
+    "id": "44c44afa-d0bd-47a6-a5d0-628b4b39667a",
+    "artist": "Bambie Thug",
+    "name": "Doomsday Blue",
+    "year": 2023
+  },
+  {
+    "id": "06d4629c-8214-40ad-891a-ebda04be8220",
+    "artist": "Barbie Cast",
+    "name": "I'm just Ken",
+    "year": 2023
+  },
+  {
+    "id": "8aaf3976-cec6-4908-9717-dc0c2dd68a26",
+    "artist": "Marina",
+    "name": "Oh No!",
+    "year": 2010
   }
 ]
